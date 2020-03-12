@@ -1,0 +1,38 @@
+﻿@model ChandlerSpeaks.Controllers.FormModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    
+
+    
+}
+
+<body>
+    <div class="text-center">
+        <h1 class="display-4">Welcome!</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    </div>
+
+    <form asp-action="Index" asp-controller="Home">
+        <label asp-for="CompanyAge[0]">Less than 1</label>
+        <input type="checkbox" asp-for="CompanyAge[0]" value="true"><br>
+        <label asp-for="CompanyAge[1]">1 to 3</label>
+        <input type="checkbox" asp-for="CompanyAge[1]" value="true"><br>
+        <label asp-for="CompanyAge[2]">4 to 6</label>
+        <input type="checkbox" asp-for="CompanyAge[2]" value="true"><br>
+        <label asp-for="CompanyAge[3]">7 to 9</label>
+        <input type="checkbox" asp-for="CompanyAge[3]" value="true"><br>
+        <label asp-for="CompanyAge[4]">10 to 12</label>
+        <input type="checkbox" asp-for="CompanyAge[4]" value="true"><br>
+        <label asp-for="CompanyAge[5]">More than 12</label>
+        <input type="checkbox" asp-for="CompanyAge[5]" value="true"><br>
+
+        
+
+        
+        <input type="submit">
+    </form>
+
+    
+
+</body>
