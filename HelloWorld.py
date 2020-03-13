@@ -13,7 +13,7 @@ fooTest = fooclass()
 
 fooTest.name = "Joe Bob Briggs"
 
-fooTest.age = 56
+fooTest.age = 35
 
 def bar():
     return fooTest.f();
