@@ -1,3 +1,19 @@
-stringList = {"string1":"My", "string2":"Foo", "string3":"Bar"}
+class fooclass:
+    name = "Antonio"
 
-print("This Python program has finished!")
+    age = None
+
+    def f(self):
+        return self.name
+    
+    def getAge(self):
+        return self.age
+
+fooTest = fooclass()
+
+fooTest.name = "Joe Bob Briggs"
+
+fooTest.age = 56
+
+def bar():
+    return fooTest.f();
