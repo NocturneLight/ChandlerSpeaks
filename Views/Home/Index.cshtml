@@ -1,4 +1,5 @@
-﻿@model ChandlerSpeaks.Controllers.FormModel
+﻿@model ChandlerSpeaks.Models.FilterModel
+
 
 @{
     ViewData["Title"] = "Home Page";
@@ -27,6 +28,10 @@
         <label asp-for="CompanyAge[5]">More than 12</label>
         <input type="checkbox" asp-for="CompanyAge[5]" value="true"><br>
 
+
+
+        <input type="radio" asp-for="ReligiousAffiliation" value="yes"><br>
+        <input type="radio" asp-for="ReligiousAffiliation" value="no"><br>
         
 
         
