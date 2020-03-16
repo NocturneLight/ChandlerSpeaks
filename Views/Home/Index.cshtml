@@ -9,10 +9,179 @@
 }
 
 <body>
+
+    <form method="POST">
+        <!--A number of filter sections go in a row.-->
+        <section class="row">
+            <!--Each row contains a column of filter choices.-->
+            <section class="column">
+                <!--The Company Age section.-->
+                <fieldset class="fieldgroup-style">
+                    <legend class="legend-style">Company Age</legend>
+                    <input type="checkbox" asp-for="CompanyAge[0]" value="true">
+                    <label asp-for="CompanyAge[0]">Less than 1</label><br>
+                    <input type="checkbox" asp-for="CompanyAge[1]" value="true">
+                    <label asp-for="CompanyAge[1]">1 to 3</label><br>
+                    <input type="checkbox" asp-for="CompanyAge[2]" value="true">
+                    <label asp-for="CompanyAge[2]">4 to 6</label><br>
+                    <input type="checkbox" asp-for="CompanyAge[3]" value="true">
+                    <label asp-for="CompanyAge[3]">7 to 9</label><br>
+                    <input type="checkbox" asp-for="CompanyAge[4]" value="true">
+                    <label asp-for="CompanyAge[5]">10 to 12</label><br>
+                    <input type="checkbox" asp-for="CompanyAge[5]" value="true">
+                    <label asp-for="CompanyAge[5]">More than 12</label><br>
+                </fieldset>
+            </section>
+            <!--The Grant Type section.-->
+            <section class="column">
+                <fieldset class="fieldgroup-style">
+                    <legend class="legend-style">Grant Type</legend>
+                    <input type="checkbox" asp-for="GrantType[0]" value="true">
+                    <label asp-for="GrantType[0]">All</label><br>
+                    <input type="checkbox" asp-for="GrantType[1]" value="true">
+                    <label asp-for="GrantType[1]">Type 1</label><br>
+                    <input type="checkbox" asp-for="GrantType[2]" value="true">
+                    <label asp-for="GrantType[2]">Type 2</label><br>
+                    <input type="checkbox" asp-for="GrantType[3]" value="true">
+                    <label asp-for="GrantType[3]">Type 3</label><br>
+                    <input type="checkbox" asp-for="GrantType[4]" value="true">
+                    <label asp-for="GrantType[4]">Type 4</label><br>
+                    <input type="checkbox" asp-for="GrantType[5]" value="true">
+                    <label asp-for="GrantType[5]">Type 5</label><br>
+                </fieldset>
+            </section>
+        </section>
+
+        <!--Now begins the second row of filter options.-->
+        <section class="row">
+            <!--The Location section-->
+            <section class="column">
+                <fieldset class="fieldgroup-style">
+                    <legend class="legend-style">Location</legend>
+                    <input type="checkbox" asp-for="Location[0]" value="true">
+                    <label asp-for="Location[0]">All</label><br>
+                    <input type="checkbox" asp-for="Location[1]" value="true">
+                    <label asp-for="Location[1]">Carrollton</label><br>
+                    <input type="checkbox" asp-for="Location[2]" value="true">
+                    <label asp-for="Location[2]">Coppell</label><br>
+                    <input type="checkbox" asp-for="Location[3]" value="true">
+                    <label asp-for="Location[3]">Dallas</label><br>
+                    <input type="checkbox" asp-for="Location[4]" value="true">
+                    <label asp-for="Location[4]">Fort Worth</label><br>
+                    <input type="checkbox" asp-for="Location[5]" value="true">
+                    <label asp-for="Location[5]">Flower Mound</label><br>
+                    <input type="checkbox" asp-for="Location[6]" value="true">
+                    <label asp-for="Location[6]">Grapevine</label><br>
+                    <input type="checkbox" asp-for="Location[7]" value="true">
+                    <label asp-for="Location[7]">Irving</label><br>
+                    <input type="checkbox" asp-for="Location[8]" value="true">
+                    <label asp-for="Location[8]">Lewisville</label><br>
+                    <input type="checkbox" asp-for="Location[9]" value="true">
+                    <label asp-for="Location[9]">Plano</label><br>
+                    <input type="checkbox" asp-for="Location[10]" value="true">
+                    <label asp-for="Location[10]">Richardson</label><br>
+                    <input type="checkbox" asp-for="Location[11]" value="true">
+                    <label asp-for="Location[11]">Frisco</label><br>
+                    <input type="checkbox" asp-for="Location[12]" value="true">
+                    <label asp-for="Location[12]">Arlington</label><br>
+                    <input type="checkbox" asp-for="Location[13]" value="true">
+                    <label asp-for="Location[13]">Southlake</label><br>
+                </fieldset>            
+            </section>
+            <!--The Race section-->
+            <section class="column">
+                <fieldset class="fieldgroup-style">
+                    <legend class="legend-style">Race</legend>
+                    <input type="checkbox" asp-for="Race[0]" value="true">
+                    <label asp-for="Race[0]">African American</label><br>
+                    <input type="checkbox" asp-for="Race[1]" value="true">
+                    <label asp-for="Race[1]">Asian</label><br>
+                    <input type="checkbox" asp-for="Race[2]" value="true">
+                    <label asp-for="Race[2]">Caucasian</label><br>
+                    <input type="checkbox" asp-for="Race[3]" value="true">
+                    <label asp-for="Race[3]">Hispanic</label><br>
+                    <input type="checkbox" asp-for="Race[4]" value="true">
+                    <label asp-for="Race[4]">Middle Eastern</label><br>
+                    <input type="checkbox" asp-for="Race[5]" value="true">
+                    <label asp-for="Race[5]">American Indian</label><br>
+                </fieldset>
+            </section>
+        </section>
+
+        <!--Now begins the third row of filter options.-->
+        <section class="row">
+            <!--The Religious Affiliation section-->
+            <section class="column">
+                <fieldset class="fieldgroup-style">
+                    <legend class="legend-style">Religious Affiliation</legend>
+                    <input type="radio" asp-for="ReligiousAffiliation" value="yes">
+                    <label asp-for="ReligiousAffiliation">Yes</label><br>
+                    <input type="radio" asp-for="ReligiousAffiliation" value="no">
+                    <label asp-for="ReligiousAffiliation">No</label><br>
+                </fieldset>
+            </section>
+            <!--The Religious Identification section-->
+            <section class="column">
+                <fieldset class="fieldgroup-style">
+                    <legend class="legend-style">Religious Identification</legend>
+                    <input type="checkbox" asp-for="ReligiousIdentification[0]" value="true">
+                    <label asp-for="ReligiousIdentification[0]">Christian</label><br>
+                    <input type="checkbox" asp-for="ReligiousIdentification[1]" value="true">
+                    <label asp-for="ReligiousIdentification[1]">Catholic</label><br>
+                    <input type="checkbox" asp-for="ReligiousIdentification[2]" value="true">
+                    <label asp-for="ReligiousIdentification[2]">Hindu</label><br>
+                    <input type="checkbox" asp-for="ReligiousIdentification[3]" value="true">
+                    <label asp-for="ReligiousIdentification[3]">Muslim</label><br>
+                    <input type="checkbox" asp-for="ReligiousIdentification[4]" value="true">
+                    <label asp-for="ReligiousIdentification[4]">Buddhist</label><br>
+                    <input type="checkbox" asp-for="ReligiousIdentification[5]" value="true">
+                    <label asp-for="ReligiousIdentification[5]">Sikh</label><br>
+                    <input type="checkbox" asp-for="ReligiousIdentification[6]" value="true">
+                    <label asp-for="ReligiousIdentification[6]">Jewish</label><br>
+                    <input type="checkbox" asp-for="ReligiousIdentification[7]" value="true">
+                    <label asp-for="ReligiousIdentification[7]">Other</label><br>
+                </fieldset>
+            </section>
+        </section>
+        <!--Now begins the fourth row of filter options.-->
+        <section class="row">
+            <!--The Due Dates section-->
+            <section class="column">
+                <fieldset class="fieldgroup-style">
+                    <legend class="legend-style">Due Dates</legend>
+                    <input type="checkbox" asp-for="DueDates[0]" value="true">
+                    <label asp-for="DueDates[0]">All</label><br>
+                    <input type="checkbox" asp-for="DueDates[1]" value="true">
+                    <label asp-for="DueDates[1]">1 Week</label><br>
+                    <input type="checkbox" asp-for="DueDates[2]" value="true">
+                    <label asp-for="DueDates[2]">2 Weeks</label><br>
+                    <input type="checkbox" asp-for="DueDates[3]" value="true">
+                    <label asp-for="DueDates[3]">1 Month</label><br>
+                    <input type="checkbox" asp-for="DueDates[4]" value="true">
+                    <label asp-for="DueDates[4]">2 Months</label><br>
+                    <input type="checkbox" asp-for="DueDates[5]" value="true">
+                    <label asp-for="DueDates[5]">Greater Than 2 Months</label><br>
+                </fieldset>
+            </section>
+        </section>
+
+        
+        <input type="submit">
+    </form>
+
+
+
+<!--
     <div class="text-center">
         <h1 class="display-4">Welcome!</h1>
         <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     </div>
+
+
+    
+    
+    
+
 
     <form asp-action="Index" asp-controller="Home">
         <label asp-for="CompanyAge[0]">Less than 1</label>
@@ -37,7 +206,7 @@
         
         <input type="submit">
     </form>
-
+-->
     
 
 </body>
