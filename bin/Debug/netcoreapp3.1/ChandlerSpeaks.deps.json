@@ -25,6 +25,7 @@
       "ChandlerSpeaks/1.0.0": {
         "dependencies": {
           "IronPython": "2.7.9",
+          "IronPython.StdLib": "2.7.9",
           "ScrapySharp": "3.0.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
@@ -428,6 +429,11 @@
           "lib/netcoreapp2.1/IronPython.Modules.dll": {},
           "lib/netcoreapp2.1/IronPython.SQLite.dll": {},
           "lib/netcoreapp2.1/IronPython.dll": {}
+        }
+      },
+      "IronPython.StdLib/2.7.9": {
+        "dependencies": {
+          "IronPython": "2.7.9"
         }
       },
       "Microsoft.NETCore.Platforms/2.0.0": {},
@@ -2711,6 +2717,13 @@
       "sha512": "sha512-CXQT1XUPKapVZ1r4coR+lFlC1FEsI4sDJg/9iSug/fUnWuYZ8APAPFutPG09T2uwcsWk40s4ckqO27/dbsA6lw==",
       "path": "ironpython/2.7.9",
       "hashPath": "ironpython.2.7.9.nupkg.sha512"
+    },
+    "IronPython.StdLib/2.7.9": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-uBBPURhEc0G132qXYCXcbXg0JGAgmahMrrEygAb1zuc1vipLmd4SpEeFmiqJTj9E6VOdkAmCQnVXMEVhd8vmNQ==",
+      "path": "ironpython.stdlib/2.7.9",
+      "hashPath": "ironpython.stdlib.2.7.9.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/2.0.0": {
       "type": "package",

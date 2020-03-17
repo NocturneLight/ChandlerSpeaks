@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ChandlerSpeaks.Models;
-//using IronPython.Hosting;
+using IronPython.Hosting;
 
 namespace ChandlerSpeaks.Controllers
 {
@@ -23,8 +24,22 @@ namespace ChandlerSpeaks.Controllers
         {
             model.DisplayAllValues();
 
+
+
+
             // Create an instance of the Python engine.
             //var pythonEngine = Python.CreateEngine();
+
+
+            //string path = @"..\ChandlerSpeaks\Lib\site-packages";
+
+            //var paths = pythonEngine.GetSearchPaths();
+            //paths.Add(path);
+            //pythonEngine.SetSearchPaths(paths);
+
+
+
+
 
             // Create an instance of the scope.
             //var pythonScope = pythonEngine.CreateScope();

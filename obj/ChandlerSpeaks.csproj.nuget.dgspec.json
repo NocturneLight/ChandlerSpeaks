@@ -43,6 +43,10 @@
               "target": "Package",
               "version": "[2.7.9, )"
             },
+            "IronPython.StdLib": {
+              "target": "Package",
+              "version": "[2.7.9, )"
+            },
             "ScrapySharp": {
               "target": "Package",
               "version": "[3.0.0, )"
