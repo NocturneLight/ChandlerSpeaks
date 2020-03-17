@@ -1,4 +1,4 @@
-import feedparser
+#import feedparser
 
 class fooclass:
     name = "Antonio"
