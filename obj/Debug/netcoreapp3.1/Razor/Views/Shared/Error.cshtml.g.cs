@@ -26,8 +26,8 @@ using ChandlerSpeaks.Models;
 #line default
 #line hidden
 #nullable disable
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d6a5625cc8fb4476f348b0fe9041c550465d8bf9", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"9ad20ac95608e27ab642fc5d5f7267dca5e7d510", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4ecc4d2bcad30a6aee551879bc7e7094ebb4184d", @"/Views/Shared/Error.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8d0b3a695aa18bda8609b9b5dfa91a30ea9deefc", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     {
         #pragma warning disable 1998
@@ -41,7 +41,7 @@ using ChandlerSpeaks.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n<h1 class=\"text-danger\">Error.</h1>\r\n<h2 class=\"text-danger\">An error occurred while processing your request.</h2>\r\n\r\n");
+            WriteLiteral("\n<h1 class=\"text-danger\">Error.</h1>\n<h2 class=\"text-danger\">An error occurred while processing your request.</h2>\n\n");
 #nullable restore
 #line 9 "C:\Users\Requi\Documents\GitHub\ChandlerSpeaks\Views\Shared\Error.cshtml"
  if (Model.ShowRequestId)
@@ -50,7 +50,7 @@ using ChandlerSpeaks.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("    <p>\r\n        <strong>Request ID:</strong> <code>");
+            WriteLiteral("    <p>\n        <strong>Request ID:</strong> <code>");
 #nullable restore
 #line 12 "C:\Users\Requi\Documents\GitHub\ChandlerSpeaks\Views\Shared\Error.cshtml"
                                       Write(Model.RequestId);
@@ -58,7 +58,7 @@ using ChandlerSpeaks.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("</code>\r\n    </p>\r\n");
+            WriteLiteral("</code>\n    </p>\n");
 #nullable restore
 #line 14 "C:\Users\Requi\Documents\GitHub\ChandlerSpeaks\Views\Shared\Error.cshtml"
 }
