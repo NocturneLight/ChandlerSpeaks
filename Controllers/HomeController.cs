@@ -28,12 +28,12 @@ namespace ChandlerSpeaks.Controllers
 
 
             // Create an instance of the Python engine.
-            var pythonEngine = Python.CreateEngine();
+            //var pythonEngine = Python.CreateEngine();
 
 
             //string path = @"..\ChandlerSpeaks\Lib\site-packages";
 
-            var paths = pythonEngine.GetSearchPaths();
+            //var paths = pythonEngine.GetSearchPaths();
             //paths.Add(path);
             //pythonEngine.SetSearchPaths(paths);
 
@@ -42,29 +42,29 @@ namespace ChandlerSpeaks.Controllers
 
 
             // Create an instance of the scope.
-            var pythonScope = pythonEngine.CreateScope();
+            //var pythonScope = pythonEngine.CreateScope();
 
             // Create an instance of an operation.
-            var operation = pythonEngine.Operations;
+            //var operation = pythonEngine.Operations;
 
             // Compile and execute the Python program.
             //var pythonScript = pythonEngine.CreateScriptSourceFromFile("HelloWorld.py").Compile().Execute(pythonScope);
-            var pythonScript = pythonEngine.ExecuteFile("HelloWorld.py", pythonScope);
+            //var pythonScript = pythonEngine.ExecuteFile("HelloWorld.py", pythonScope);
 
             // Retrieve the Python program's list from the scope instance.
             //IronPython.Runtime.List pythonList = pythonScope.GetVariable("testDiction");
             
             // Retrieve an instance of the object.
-            object foobarTest = pythonScope.GetVariable("fooTest");
+            //object foobarTest = pythonScope.GetVariable("fooTest");
 
-            Func<string> sayHello = pythonEngine.Operations.GetMember<Func<string>>(foobarTest, "f");
+            //Func<string> sayHello = pythonEngine.Operations.GetMember<Func<string>>(foobarTest, "f");
             //Func<int> sayAge = pythonEngine.Operations.GetMember<Func<int>>(foobarTest, "getAge");
             //Func<List<string>> Hi = pythonEngine.Operations.GetMember<Func<List<string>>>(foobarTest, "");
 
-            string result = sayHello();
+            //string result = sayHello();
             //int age = sayAge();
 
-            Debug.WriteLine(result);
+            //Debug.WriteLine(result);
             //Debug.WriteLine(age);    
 
             /*
