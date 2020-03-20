@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ChandlerSpeaks.Models;
-using IronPython.Hosting;
 using HtmlAgilityPack;
 using ScrapySharp.Extensions;
 
@@ -24,7 +23,7 @@ namespace ChandlerSpeaks.Controllers
         [HttpPost]
         public IActionResult Index(FilterModel model)
         {
-            model.DisplayAllValues();
+            //model.DisplayAllValues();
 
 	        GoogleScrap();
 
