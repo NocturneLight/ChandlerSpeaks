@@ -101,7 +101,7 @@ namespace ChandlerSpeaks.Controllers
                 		Console.WriteLine("URL: " + node.CssSelect(".rc .r a").Single().GetAttributeValue("href"));
             		}
         	}
-        	Console.ReadLine();
+        	
 	}
 	
         // Prebuilt functions.
