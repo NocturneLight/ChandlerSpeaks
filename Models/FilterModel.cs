@@ -49,6 +49,7 @@ namespace ChandlerSpeaks.Models
                 for (int i = 0; i < GrantType.Count; i++)
                 {
                     Debug.WriteLine("[" + i + "] - " + GrantType[i]);
+                    
                 }
             }
 
