@@ -29,6 +29,7 @@ namespace ChandlerSpeaks.Models
         public string ReligiousAffiliation {get; set;}
         public List<bool> ReligiousIdentification {get; set;}
         public List<bool> DueDates {get; set;}
+        public String endURL;
 
         // Create other functions here.
         public string getCompanyAgeName(int Index)
@@ -68,6 +69,8 @@ namespace ChandlerSpeaks.Models
 
         public void DisplayAllValues()
         {
+           
+
             // Check if there are values in the CompanyAge list.
             if (CompanyAge != null)
             {
@@ -79,6 +82,7 @@ namespace ChandlerSpeaks.Models
                 for (int i = 0; i < CompanyAge.Count; i++)
                 {
                     Debug.WriteLine("[" + i + "] - " + CompanyAge[i]);
+
                 }
             }
 
@@ -93,7 +97,7 @@ namespace ChandlerSpeaks.Models
                 for (int i = 0; i < GrantType.Count; i++)
                 {
                     Debug.WriteLine("[" + i + "] - " + GrantType[i]);
-                    
+
                 }
             }
 
@@ -158,6 +162,56 @@ namespace ChandlerSpeaks.Models
                     Debug.WriteLine("[" + i + "] - " + DueDates[i]);
                 }
             }
+
         } 
+
+        public void createURLend(){
+            String LocationURL=null;
+            String RaceURL=null;
+            String ReligionURL=null;
+
+            // Check if there are values in the Location list.
+            if (Location != null)
+            {
+                LocationURL="in+";
+                // Iterate through the list and collect location search terms for URL
+                for (int i = 0; i < Location.Count; i++)
+                {
+                    if (Location[i]){
+                        LocationURL += getLocationNames(i) +"+";
+                    }
+                }
+            }
+
+             // Check if there are values in the Race list.
+            if (Race != null)
+            {
+
+                // Iterate through the list and collect race search terms for URL
+                for (int i = 0; i < Race.Count; i++)
+                {
+                    if (Race[i]){
+                        RaceURL += getRaceNames(i) +"+";
+                    }
+                }
+            }
+
+             // Check if there are values in the Religious Identification list.
+            if (ReligiousIdentification != null)
+            {
+                // Iterate through the list and collect search terms for URL
+                for (int i = 0; i < ReligiousIdentification.Count; i++)
+                {
+                    if (ReligiousIdentification[i]){
+                        ReligionURL += getReligiousIdentificationNames(i) +"+";
+                    }
+                }
+            }
+            
+            //complete URL search terms
+            endURL = ReligionURL+ RaceURL+ LocationURL;
+            Debug.WriteLine(endURL);
+
+        }
     }
 }
