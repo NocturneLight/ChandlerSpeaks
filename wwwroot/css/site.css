@@ -9,7 +9,9 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .column {
-  padding: 1em;
+  border: solid;
+  border-width: 0.1em;
+  padding: 0 0.3em 0 0.3em;
   min-width: 17%;
 }
 
@@ -20,10 +22,8 @@ for details on configuring this project to bundle and minify static web assets. 
   color: rgb(18, 125, 187);
 }
 
-.column {
-  border: solid;
-  border-width: 0.1em;
-  padding: 0 0.3em 0 0.3em;
+.subfilter-style {
+  margin-left: 1em;
 }
 
 /*-----------------------------------------------------*/

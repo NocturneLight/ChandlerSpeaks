@@ -40,8 +40,17 @@
                     <label asp-for="GrantType[0]">All</label><br>
                     <input type="checkbox" asp-for="GrantType[1]" value="true">
                     <label asp-for="GrantType[1]">Type 1</label><br>
-                    <input type="checkbox" asp-for="GrantType[2]" value="true">
-                    <label asp-for="GrantType[2]">Type 2</label><br>
+                    <input type="checkbox" asp-for="GrantType[2]" value="true" onclick="DisplayEducationFilters()">
+                    <label asp-for="GrantType[2]">Education</label><br>
+                    
+                    <!--The subfilters for Education-->
+                    <input type="checkbox" class="subfilter-style" style="display: none;" asp-for="GrantType[6]" value="true">
+                    <label id="GrantType_6_Label" style="display: none;" asp-for="GrantType[6]">???</label><br id="GrantType_6_BR" style="display: none;">
+                    <input type="checkbox" class="subfilter-style" style="display: none;" asp-for="GrantType[7]" value="true">
+                    <label id="GrantType_7_Label" style="display: none;" asp-for="GrantType[6]">???</label><br id="GrantType_7_BR" style="display: none;">
+                    <input type="checkbox" class="subfilter-style" style="display: none;" asp-for="GrantType[8]" value="true">
+                    <label id="GrantType_8_Label" style="display: none;" asp-for="GrantType[8]">???</label><br id="GrantType_8_BR" style="display: none;">
+
                     <input type="checkbox" asp-for="GrantType[3]" value="true">
                     <label asp-for="GrantType[3]">Type 3</label><br>
                     <input type="checkbox" asp-for="GrantType[4]" value="true">
@@ -168,7 +177,6 @@
         
         <input type="submit">
     </form>
-
 
 
 <!--
