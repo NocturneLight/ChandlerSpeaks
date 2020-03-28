@@ -82,6 +82,7 @@ namespace ChandlerSpeaks.Controllers
 
         
 	public void GoogleScrap(FilterModel model){
+          
 		    //var starturl = "https://tipidpc.com/catalog.php?cat=0&sec=s";
             //var starturl = "https://www.google.com/search?rlz=1C1AVFC_enUS767US767&sxsrf=ALeKk03LDTXH_tYzqxYh1zlQj06FFmLmcg%3A1584489656289&ei=uGRxXqmmEYOGsAWr55mIAQ&q=501c3+grants+in+texas&oq=501c3+grants+in+texas&gs_l=psy-ab.3..33i299.4233.5674..5827...0.2..0.89.680.9......0....1..gws-wiz.......0i71j35i39j0j0i22i30j38j33i22i29i30.UOY7E93wTIs&ved=0ahUKEwip4vP426LoAhUDA6wKHatzBhEQ4dUDCAs&uact=5";
         
@@ -90,15 +91,23 @@ namespace ChandlerSpeaks.Controllers
         	var webGet = new HtmlWeb();
 
         	if (webGet.Load(starturl) is HtmlDocument document)
-        	{
+        	{   
             		//var nodes = document.DocumentNode.CssSelect("#item-search-results li").ToList();  
-            		var nodes = document.DocumentNode.CssSelect("div .g").ToList();
+            		
+                    var nodes = document.DocumentNode.CssSelect("#rso .g").ToList();
+                    Console.WriteLine(nodes.Count());
 
-            		foreach (var node in nodes)
+                    foreach (var node in nodes)
             		{
-                		Console.WriteLine("----");
-                		//Console.WriteLine("URL: " + node.CssSelect("h2 a").Single().GetAttributeValue("href")); 
-                		Console.WriteLine("URL: " + node.CssSelect(".rc .r a").Single().GetAttributeValue("href"));
+                        //Console.WriteLine("URL: " + node.CssSelect("h2 a").Single().GetAttributeValue("href"));
+
+                       string s = node.CssSelect(".rc .r a").Single().GetAttributeValue("href");
+
+                        if (s.Contains("grant") == true) {          //check to se if url has grant in it
+                            Console.WriteLine("----"); 
+                		    Console.WriteLine("URL: " + node.CssSelect(".rc .r a").Single().GetAttributeValue("href"));
+                        }
+                		
             		}
         	}
         	
