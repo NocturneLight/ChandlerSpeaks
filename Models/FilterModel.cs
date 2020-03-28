@@ -19,6 +19,13 @@ namespace ChandlerSpeaks.Models
         public string ReligiousAffiliation {get; set;}
         public List<bool> ReligiousIdentification {get; set;}
         public List<bool> DueDates {get; set;}
+        public List<bool> GrantAmount { get; set; }
+        public string Type501c3 { get; set; }
+        public string FinancialInfoRequired { get; set; }
+        public string RevenueRangeRequired { get; set; }
+        public List<bool> GrantDueDate { get; set; }
+        public List<bool> FundingDueDate { get; set; }
+
 
 
         // Create other functions here.
@@ -113,6 +120,67 @@ namespace ChandlerSpeaks.Models
                     Debug.WriteLine("[" + i + "] - " + DueDates[i]);
                 }
             }
+
+            // Check if there are values in the Grant Amount list.
+            if (GrantAmount != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Grant Amount Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < GrantAmount.Count; i++)
+                {
+                    Debug.WriteLine("[" + i + "] - " + GrantAmount[i]);
+                }
+            }
+
+            // Check if there are values in the 501c3 designation.
+            if (Type501c3 != null)
+            {
+                Debug.WriteLine("Are you a designated 501c3? " + Type501c3.ToUpper());
+            }
+
+            // Check if there are values in the financial information requirements.
+            if (FinancialInfoRequired != null)
+            {
+                Debug.WriteLine("Is financial information required? " + FinancialInfoRequired.ToUpper());
+            }
+
+            // Check if there are values in the revenue range requirement list.
+            if (RevenueRangeRequired != null)
+            {
+                Debug.WriteLine("Is the revenue range required? " + RevenueRangeRequired.ToUpper());
+            }
+
+            // Check if there are values in the Grant Due Date list.
+            if (GrantDueDate != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Grant Due Date Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < GrantDueDate.Count; i++)
+                {
+                    Debug.WriteLine("[" + i + "] - " + GrantDueDate[i]);
+                }
+            }
+
+            // Check if there are values in the Funding Due Date section.
+            if (FundingDueDate != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Funding Due Date Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < FundingDueDate.Count; i++)
+                {
+                    Debug.WriteLine("[" + i + "] - " + FundingDueDate[i]);
+                }
+            }
+
         } 
     }
 }

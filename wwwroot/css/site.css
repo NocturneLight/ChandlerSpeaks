@@ -4,26 +4,67 @@ for details on configuring this project to bundle and minify static web assets. 
 /* Custom styles implemented here.
 ------------------------------------------------------*/
 
-.row {
-  display: flex;
-}
-
-.column {
+.fieldset-style {
+  height: 110px;
   border: solid;
+  background: #FDF0F2;
   border-width: 0.1em;
-  padding: 0 0.3em 0 0.3em;
-  min-width: 17%;
+  padding: 0em 0.3em 0em 0.3em;
+  margin: 0.5em 2.5em 0.5em 2.5em;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .legend-style {
+  float: left;
   text-align: center;
   font-size: 1em;
   font-weight: bold;
-  color: rgb(18, 125, 187);
+  color: black;
 }
 
 .subfilter-style {
   margin-left: 1em;
+}
+
+.left-style {
+  border: 5px solid #FDF0F2;
+  background-color: #FFF8F1;
+}
+
+.right-style {
+  background: #D7EFF2;
+}
+
+.left-style, .right-style {
+  border-radius: .5em;
+  float: right;
+  padding: 1em 1em 0em 1em;
+  margin: 10px;
+}
+
+.selectbutton-style {
+  padding: 7px;
+  text-align: center;
+  margin: auto;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  overflow: scroll;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFF8F1;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FDF0F2;
+  border: 1.25px solid black;
+  border-radius: 7px;
 }
 
 /*-----------------------------------------------------*/
