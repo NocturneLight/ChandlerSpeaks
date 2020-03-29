@@ -1,9 +1,12 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/*To change the margins on the body of the webpage, go into _Layout.cshtml and change the class on the tag
+on line 32. See the documentation at https://getbootstrap.com/docs/4.4/layout/overview/ for more details on
+the container classes.*/
+
 /* Custom styles implemented here.
 ------------------------------------------------------*/
-
 .fieldset-style {
   height: 110px;
   border: solid;
@@ -68,7 +71,6 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 /*-----------------------------------------------------*/
-
 a.navbar-brand {
   white-space: normal;
   text-align: center;

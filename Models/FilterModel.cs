@@ -19,12 +19,12 @@ namespace ChandlerSpeaks.Models
         public string ReligiousAffiliation {get; set;}
         public List<bool> ReligiousIdentification {get; set;}
         public List<bool> DueDates {get; set;}
-        public List<bool> GrantAmount { get; set; }
-        public string Type501c3 { get; set; }
-        public string FinancialInfoRequired { get; set; }
-        public string RevenueRangeRequired { get; set; }
-        public List<bool> GrantDueDate { get; set; }
-        public List<bool> FundingDueDate { get; set; }
+        public List<bool> GrantAmount {get; set;}
+        public string Type501c3 {get; set;}
+        public string FinancialInfoRequired {get; set;}
+        public string RevenueRangeRequired {get; set;}
+        public List<bool> GrantDueDate {get; set;}
+        public List<bool> FundingDueDate {get; set;}
 
 
 

@@ -22,6 +22,10 @@ namespace ChandlerSpeaks.Controllers
         [HttpPost]
         public IActionResult Index(FilterModel model)
         {
+            List<string> testList = new List<string>() {"This", "is", "a", "test."};
+
+            ViewData["Test"] = testList;
+
             model.DisplayAllValues();
 
 

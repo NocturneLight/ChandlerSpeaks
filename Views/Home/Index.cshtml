@@ -4,7 +4,15 @@
 @{
     ViewData["Title"] = "Home Page";
     
-
+    // Simple test.
+    if (ViewData["Test"] != null)
+    {
+        foreach (var item in (List<string>)ViewData["Test"])
+        {
+            Console.WriteLine(item);
+        }
+    }
+    
     
 }
 
@@ -42,8 +50,16 @@
                     <label asp-for="GrantType[2]">Business</label><br>
                     <input type="checkbox" asp-for="GrantType[3]" value="true">
                     <label asp-for="GrantType[3]">Community</label><br>
-                    <input type="checkbox" asp-for="GrantType[4]" value="true">
+                    <input type="checkbox" asp-for="GrantType[4]" value="true" onclick="DisplayEducationFilters()">
                     <label asp-for="GrantType[4]">Education</label><br>
+                    <!--The Education subfilters.-->
+                    <input type="checkbox" class="subfilter-style" style="display: none;" asp-for="GrantType[9]" value="true">
+                    <label asp-for="GrantType[9]" style="display: none;" id="GrantType_9_Label">???</label><br id="GrantType_9_BR" style="display: none;">
+                    <input type="checkbox" class="subfilter-style" style="display: none;" asp-for="GrantType[10]" value="true">
+                    <label asp-for="GrantType[10]" style="display: none;" id="GrantType_10_Label">???</label><br id="GrantType_10_BR" style="display: none;">
+                    <input type="checkbox" class="subfilter-style" style="display: none;" asp-for="GrantType[11]" value="true">
+                    <label asp-for="GrantType[11]" style="display: none;" id="GrantType_11_Label">???</label><br id="GrantType_11_BR" style="display: none;">
+                    <!---->
                     <input type="checkbox" asp-for="GrantType[5]" value="true">
                     <label asp-for="GrantType[5]">Environment</label><br>
 					<input type="checkbox" asp-for="GrantType[6]" value="true">

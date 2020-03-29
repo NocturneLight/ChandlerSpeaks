@@ -5,27 +5,27 @@
 function DisplayEducationFilters() 
 {
     // Store the education checkbox in a variable.
-    const educationCheckbox = document.getElementById("GrantType_2_");
+    const educationCheckbox = document.getElementById("GrantType_4_");
 
     // Store each subeducation checkbox in an array.
     const checkboxArray = [
-        document.getElementById("GrantType_6_"),
-        document.getElementById("GrantType_7_"),
-        document.getElementById("GrantType_8_")
+        document.getElementById("GrantType_9_"),
+        document.getElementById("GrantType_10_"),
+        document.getElementById("GrantType_11_")
     ];
 
     // Store each subeducation label in an array.
     const labelArray = [
-        document.getElementById("GrantType_6_Label"),
-        document.getElementById("GrantType_7_Label"),
-        document.getElementById("GrantType_8_Label")
+        document.getElementById("GrantType_9_Label"),
+        document.getElementById("GrantType_10_Label"),
+        document.getElementById("GrantType_11_Label")
     ];
 
     // Store each linebreak in an array.
     const lineBreakArray = [
-        document.getElementById("GrantType_6_BR"),
-        document.getElementById("GrantType_7_BR"),
-        document.getElementById("GrantType_8_BR")
+        document.getElementById("GrantType_9_BR"),
+        document.getElementById("GrantType_10_BR"),
+        document.getElementById("GrantType_11_BR")
     ];
 
 
