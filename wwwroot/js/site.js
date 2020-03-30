@@ -11,21 +11,27 @@ function DisplayEducationFilters()
     const checkboxArray = [
         document.getElementById("GrantType_9_"),
         document.getElementById("GrantType_10_"),
-        document.getElementById("GrantType_11_")
+        document.getElementById("GrantType_11_"),
+        document.getElementById("GrantType_12_"),
+        document.getElementById("GrantType_13_")
     ];
 
     // Store each subeducation label in an array.
     const labelArray = [
         document.getElementById("GrantType_9_Label"),
         document.getElementById("GrantType_10_Label"),
-        document.getElementById("GrantType_11_Label")
+        document.getElementById("GrantType_11_Label"),
+        document.getElementById("GrantType_12_Label"),
+        document.getElementById("GrantType_13_Label")
     ];
 
     // Store each linebreak in an array.
     const lineBreakArray = [
         document.getElementById("GrantType_9_BR"),
         document.getElementById("GrantType_10_BR"),
-        document.getElementById("GrantType_11_BR")
+        document.getElementById("GrantType_11_BR"),
+        document.getElementById("GrantType_12_BR"),
+        document.getElementById("GrantType_13_BR")
     ];
 
 
