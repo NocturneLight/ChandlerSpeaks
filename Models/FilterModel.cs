@@ -171,9 +171,10 @@ namespace ChandlerSpeaks.Models
             String ReligionURL=null;
 
             // Check if there are values in the Location list.
-            if (Location != null)
-            {
-                LocationURL="in+";
+            if (Location != null && Location.Contains(true))
+            {                
+                 LocationURL="in+";              //add in once
+
                 // Iterate through the list and collect location search terms for URL
                 for (int i = 0; i < Location.Count; i++)
                 {

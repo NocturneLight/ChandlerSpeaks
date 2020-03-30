@@ -23,7 +23,7 @@ namespace ChandlerSpeaks.Controllers
         [HttpPost]
         public IActionResult Index(FilterModel model)
         {
-            //model.DisplayAllValues();
+            model.DisplayAllValues();
 
             model.createURLend();
 	        GoogleScrap(model);
@@ -130,9 +130,14 @@ namespace ChandlerSpeaks.Controllers
                         
                         String href= link.GetAttributeValue("href");
 
-                        if (href.Contains("http") && (href.Contains("rss") || href.Contains("feed"))){                //if link has has rss or feed in it return it
+                        if (href.Contains("http") && (href.Contains("/rss") || href.Contains("-rss") || href.Contains("/feed") || href.Contains("-feed"))){                //if link has has rss or feed in it return it
                             Console.WriteLine("URL: "+ href);
                         }
+
+                         if ((href.Contains("/rss") || href.Contains("-rss") || href.Contains("/feed") || href.Contains("-feed"))
+                         {
+                            Console.WriteLine("URL: "+ href);
+                         }
                     }
                 }
             }
