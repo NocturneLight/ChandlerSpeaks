@@ -36,7 +36,8 @@ the container classes.*/
 }
 
 .right-style {
-  background: #D7EFF2;
+  background-color: #D7EFF2;
+  border: 5px solid #B0E0E6;
 }
 
 .left-style, .right-style {
