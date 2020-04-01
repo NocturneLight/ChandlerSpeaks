@@ -31,6 +31,13 @@ namespace ChandlerSpeaks.Models
         public List<bool> DueDates {get; set;}
         public String endURL;
 
+        //list array that stores the values cselected by user
+        private List<string> AllLocations = new List<string>();
+
+        public List<string> getAllLocations(){
+            return AllLocations;
+        }
+
         // Create other functions here.
         public string getCompanyAgeName(int Index)
         {
@@ -66,6 +73,7 @@ namespace ChandlerSpeaks.Models
         {
             return DueDatesNames[Index];
         }
+
 
         public void DisplayAllValues()
         {
@@ -180,6 +188,8 @@ namespace ChandlerSpeaks.Models
                 {
                     if (Location[i]){
                         LocationURL += getLocationNames(i) +"+";
+
+                        AllLocations.Add(getLocationNames(i));          //save selected location array
                     }
                 }
             }
