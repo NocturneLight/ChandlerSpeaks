@@ -13,7 +13,7 @@ using ScrapySharp.Extensions;
 namespace ChandlerSpeaks.Controllers
 {
     public class HomeController : Controller
-    {
+    {   
         private readonly ILogger<HomeController> _logger;
 
         // Create variables here.
@@ -85,13 +85,9 @@ namespace ChandlerSpeaks.Controllers
 
         
 	    public void GoogleScrap(FilterModel model){
-          
-		    //var starturl = "https://tipidpc.com/catalog.php?cat=0&sec=s";
-            //var starturl = "https://www.google.com/search?rlz=1C1AVFC_enUS767US767&sxsrf=ALeKk03LDTXH_tYzqxYh1zlQj06FFmLmcg%3A1584489656289&ei=uGRxXqmmEYOGsAWr55mIAQ&q=501c3+grants+in+texas&oq=501c3+grants+in+texas&gs_l=psy-ab.3..33i299.4233.5674..5827...0.2..0.89.680.9......0....1..gws-wiz.......0i71j35i39j0j0i22i30j38j33i22i29i30.UOY7E93wTIs&ved=0ahUKEwip4vP426LoAhUDA6wKHatzBhEQ4dUDCAs&uact=5";
         
             var starturl="http://www.google.com/search?q=\"grants\"+for+"+model.endURL+"&num=100";
-            //var starturl="https://www.googleapis.com/customsearch/v1?key=AIzaSyBAFBQ2F1e6DCjokPo8Nhnvmbl-qiPzS6s&cx=004836526346178458908:2ppwybpinz4&q=grants+for+"+model.endURL;
-        	
+           
             var webGet = new HtmlWeb();
 
                 if (webGet.Load(starturl) is HtmlDocument document)
@@ -112,9 +108,10 @@ namespace ChandlerSpeaks.Controllers
                             //Console.WriteLine("URL: " + node.CssSelect(".rc .r a").Single().GetAttributeValue("href"));
                             
                             //Console.WriteLine("Link sent: "+s);
-                            HTMLDoc_RssFinder(s);
                             
-                            //HTMLDoc_SourceSearcher(s, model);
+                            //HTMLDoc_RssFinder(s);    //uncomment to run rss finder
+                            
+                            HTMLDoc_SourceSearcher(s, model);   //looks through source of each link for info on grants
                             
                         }
                 }
@@ -131,7 +128,6 @@ namespace ChandlerSpeaks.Controllers
                 if (webGet.Load(url) is HtmlDocument document){
                     
                     foreach (HtmlAgilityPack.HtmlNode link in document.DocumentNode.SelectNodes("//a[@href] | //link[@href]")){
-                        //var RSS_link = doc.DocumentNode.SelectSingleNode("//a[text()='RSS']").Attributes["href"].Value;
                         
                         String href= link.GetAttributeValue("href");
 
@@ -142,8 +138,6 @@ namespace ChandlerSpeaks.Controllers
                         /*if (!href.Contains(".") && (href.Contains("/rss") || href.Contains("-rss") || href.Contains("/feed") || href.Contains("-feed"))){
                             Console.WriteLine("URL: "+url+ href);     //some links arent the full rss
                         }*/
-
-                        
 
                     }
                 }
@@ -163,14 +157,24 @@ namespace ChandlerSpeaks.Controllers
                         String words = block.InnerText;
 
                         //Console.WriteLine(words);
-                        
-                        if((model.getAllLocations()).Any(words.Contains)){      //testing if site mentions location
-                            Console.WriteLine("MENTIONS ONE OF LOCATIONS \n"+ words);
+
+                        if(words.Contains("grant")){
+                            //Console.WriteLine("MENTIONS GRANT \n"+url);
+                            HTMLNode_GrantExtrator(url);
+                            break;
                         }
 
-                        if(words.Contains("age.") || words.Contains("age ") ||words.Contains("age:")){
+                        /*if((model.getAllRaces().Any(words.Contains)){
+                            Console.WriteLine("MENTIONS ONE OF RACES \n"+ words);
+                        }*/
+                        
+                        /*if((model.getAllLocations()).Any(words.Contains)){      //testing if site mentions location
+                            Console.WriteLine("MENTIONS ONE OF LOCATIONS \n"+ words);
+                        }*/
+
+                        /*if(words.Contains("age.") || words.Contains("age ") ||words.Contains("age:")){
                             Console.WriteLine("MENTIONS AGE \n"+ words);
-                        }
+                        }*/
                     } 
 
                 }
@@ -178,6 +182,26 @@ namespace ChandlerSpeaks.Controllers
             }catch(Exception E){
                 Console.WriteLine(E);
             }
+        }
+
+        //an attempt to get grant related urls off site
+        public void HTMLNode_GrantExtrator(String url){
+            var webGet = new HtmlWeb();
+
+             if (webGet.Load(url) is HtmlDocument document){
+                 foreach (HtmlAgilityPack.HtmlNode block in document.DocumentNode.SelectNodes("//a[@href]")){
+                    
+                    String blockword = block.InnerText;
+
+                    if(blockword.Contains("grant")){                        //checks to see if url/url title has the word grant in it
+                        String href= block.GetAttributeValue("href");
+                        Console.WriteLine("Grant Urls: "+href);
+                    }
+                    
+
+                    
+                }
+             }
         }
 
         // Prebuilt functions.
