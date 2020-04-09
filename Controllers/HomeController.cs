@@ -1,22 +1,15 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ChandlerSpeaks.Models;
-using IronPython.Hosting;
 
 namespace ChandlerSpeaks.Controllers
 {
+    // Create variables here.
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        // Create variables here.
-        //dynamic testVariable;
 
         // Create functions here.
         [HttpPost]
@@ -28,55 +21,6 @@ namespace ChandlerSpeaks.Controllers
 
             model.DisplayAllValues();
 
-
-
-
-            // Create an instance of the Python engine.
-            //var pythonEngine = Python.CreateEngine();
-
-
-            //string path = @"..\ChandlerSpeaks\Lib\site-packages";
-
-            //var paths = pythonEngine.GetSearchPaths();
-            //paths.Add(path);
-            //pythonEngine.SetSearchPaths(paths);
-
-
-
-
-
-            // Create an instance of the scope.
-            //var pythonScope = pythonEngine.CreateScope();
-
-            // Create an instance of an operation.
-            //var operation = pythonEngine.Operations;
-
-            // Compile and execute the Python program.
-            //var pythonScript = pythonEngine.CreateScriptSourceFromFile("HelloWorld.py").Compile().Execute(pythonScope);
-            //var pythonScript = pythonEngine.ExecuteFile("HelloWorld.py", pythonScope);
-
-            // Retrieve the Python program's list from the scope instance.
-            //IronPython.Runtime.List pythonList = pythonScope.GetVariable("testDiction");
-            
-            // Retrieve an instance of the object.
-            //object foobarTest = pythonScope.GetVariable("fooTest");
-
-            //Func<string> sayHello = pythonEngine.Operations.GetMember<Func<string>>(foobarTest, "f");
-            //Func<int> sayAge = pythonEngine.Operations.GetMember<Func<int>>(foobarTest, "getAge");
-            //Func<List<string>> Hi = pythonEngine.Operations.GetMember<Func<List<string>>>(foobarTest, "");
-
-            //string result = sayHello();
-            //int age = sayAge();
-
-            //Debug.WriteLine(result);
-            //Debug.WriteLine(age);    
-
-            /*
-            foreach (var item in model.CompanyAge)
-            {
-                Debug.WriteLine(item);
-            }
-            */
 
             //return Content("Hi! The size is: ");
             return View("Index");
