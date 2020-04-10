@@ -9,6 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
+            "postDebugTask": "clean",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/ChandlerSpeaks.dll",
             "args": [],
@@ -32,6 +33,6 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
-        }
+        },
     ]
 }

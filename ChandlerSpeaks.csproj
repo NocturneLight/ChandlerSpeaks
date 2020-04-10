@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
     <PackageReference Include="IronPython" Version="2.7.9" />
     <PackageReference Include="IronPython.StdLib" Version="2.7.9" />
     <PackageReference Include="ScrapySharp" Version="3.0.0" />
