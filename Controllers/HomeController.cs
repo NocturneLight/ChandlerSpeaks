@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Xml;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ChandlerSpeaks.Models;
@@ -80,17 +81,20 @@ namespace ChandlerSpeaks.Controllers
             */
 
             //return Content("Hi! The size is: ");
+
             return View("Index");
         }
 
         
-	    public void GoogleScrap(FilterModel model){
+	    public List<Grant> GoogleScrap(FilterModel model){
         
             var starturl="http://www.google.com/search?q=\"grants\"+for+"+model.endURL+"&num=100";
-           
             var webGet = new HtmlWeb();
+            //Jesse'sCode///////////////////////////////////////
+            List<Grant> grantsList = new List<Grant>(GrantsGovRSSGet.GetGrantGovList());
 
-                if (webGet.Load(starturl) is HtmlDocument document)
+            //End Jesse's Code//////////////////////////////////
+            if (webGet.Load(starturl) is HtmlDocument document)
                 {   
                         //var nodes = document.DocumentNode.CssSelect("#item-search-results li").ToList();  
                         
@@ -115,9 +119,11 @@ namespace ChandlerSpeaks.Controllers
                             
                         }
                 }
-        	
-            
-	    }
+            foreach(Grant grant in grantsList) {
+                Console.WriteLine(grant.Title);
+            }
+            return grantsList;
+        }
 
         //search collected links for RSS
         public void HTMLDoc_RssFinder(String url){
