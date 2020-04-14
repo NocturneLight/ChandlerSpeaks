@@ -12,7 +12,7 @@ class GrantsGovRSSGet
 
 
     //EXPLAINER: This method, GetGrantGovList, pulls and parses grants from RSS feed on grants.gov only if they are qualified for 501c3 nonprofits and have a category of health or education
-    public List<Grant> GetGrantGovList()
+    public static List<Grant> GetGrantGovList()
     {
         //-----------------JESSE ALOTTOS CODE HERE---------------------------------------------------------------------------
         //Plan: 1. Get a bunch of URls
@@ -31,7 +31,7 @@ class GrantsGovRSSGet
         XmlNodeList links = Xdoc.GetElementsByTagName("link");
         XmlNodeList content = Xdoc.GetElementsByTagName("content:encoded");
         XmlNodeList pubDates = Xdoc.GetElementsByTagName("pubDate");
-        for (int i = 0; i < links.Count; i++)
+        for (int i = 0; i < links.Count-1; i++)
         {
             if (content.Item(i).InnerXml.Contains("<br>Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education")
             && (content.Item(i).InnerXml.ToLower().Contains("health") || content.Item(i).InnerXml.ToLower().Contains("education")))  // Only get grants that have 501c3 and health or education in the eligibility section
@@ -58,7 +58,7 @@ class GrantsGovRSSGet
     //EXPLAINER: This method, SortListByMatches, takes the grantsList that results from GrantsGovRSSGet and increments a score based on how many keywords related to child speech
     // development that the content section of the grant matches against. It then returns the list sorted with the highest scoring entries first. This can then be loaded into the results area
     // after further incrementing the score counter based on demographic/location/etc. information to get the highest scoring matches first
-    public List<Grant> SortListByMatches(List<Grant> grantsList) {
+    public static List<Grant> SortListByMatches(List<Grant> grantsList) {
         string[] keywordBankForChildSpeechRelatedGrants = { "child", "speech", "learning", "disab", "patho", "impedi", "education", "therapy", "talk", "kid", "audi" };
         foreach (Grant grant in grantsList)
         {
@@ -77,14 +77,8 @@ class GrantsGovRSSGet
             Console.WriteLine(grant.Title + " | " + grant.Score);
         }
 
-
-
-        //-------------------------Sorting Algorithm Goes Here----------------------------------
-
-
-
-
-        //---------------------------------------------------------------------------------------
+        grantsList.Sort();
         return grantsList;
+        
     }
 }

@@ -10,25 +10,33 @@ namespace ChandlerSpeaks.Models
     public class FilterModel
     {
         // Create variables here.
-        private readonly string[] CompanyAgeNames = {"Less than 1", "1 to 3", "4 to 6", "7 to 9", "10 to 12", "More than 12"};
-        private readonly string[] GrantTypeNames = {"All", "Type 1", "Type 2", "Type 3", "Type 4", "Type 5"};
-        private readonly string[] LocationNames = {"All", "Carrollton", "Coppell", "Dallas", "Fort Worth", "Flower Mound", "Grapevine", "Irving", "Lewisville", "Plano", "Richardson", "Frisco", "Arlington", "Southlake"};
-        private readonly string[] RaceNames = {"African American", "Asian", "Caucasian", "Hispanic", "Middle Eastern", "American Indian"};
-        private readonly string[] ReligiousAffiliationNames = {"Yes", "No"};
-        private readonly string[] ReligiousIdentificationNames = {"Christian", "Catholic", "Hindu", "Muslim", "Buddhist", "Sikh", "Jewish", "Other"};
-        private readonly string[] DueDatesNames = {"All", "1 Week", "2 Weeks", "1 Month", "2 Months", "Greater Than 2 Months"};
+        private readonly string[] CompanyAgeNames = { "Less than 1", "1 to 3", "4 to 6", "7 to 9", "10 to 12", "More than 12" };
+        private readonly string[] GrantTypeNames = { "All", "Type 1", "Type 2", "Type 3", "Type 4", "Type 5" };
+        private readonly string[] LocationNames = { "All", "Carrollton", "Coppell", "Dallas", "Fort Worth", "Flower Mound", "Grapevine", "Irving", "Lewisville", "Plano", "Richardson", "Frisco", "Arlington", "Southlake" };
+        private readonly string[] RaceNames = { "African American", "Asian", "Caucasian", "Hispanic", "Middle Eastern", "American Indian" };
+        private readonly string[] ReligiousAffiliationNames = { "Yes", "No" };
+        private readonly string[] ReligiousIdentificationNames = { "Christian", "Catholic", "Hindu", "Muslim", "Buddhist", "Sikh", "Jewish", "Other" };
+        private readonly string[] DueDatesNames = { "All", "1 Week", "2 Weeks", "1 Month", "2 Months", "Greater Than 2 Months" };
+
+        public List<string> companyAgeSelections = new List<string>();
+        public List<string> grantTypeSelections = new List<string>();
+        public List<string> locationSelections = new List<string>();
+        public List<string> raceSelections = new List<string>();
+        public List<string> religiousSelections = new List<string>();
+        public List<string> dueDateSelections = new List<string>();
+
 
         // Create lists for storing each section's choice's truth values.
         // Each checkbox on the main page gets one area of the list.
         // In other words, checkbox 1 of the Company Age section gets "CompanyAge[0],
         // checkbox 2 gets "CompanyAge[1]" and so on.
-        public List<bool> CompanyAge {get; set;}
-        public List<bool> GrantType {get; set;}
-        public List<bool> Location {get; set;}
-        public List<bool> Race {get; set;}
-        public string ReligiousAffiliation {get; set;}
-        public List<bool> ReligiousIdentification {get; set;}
-        public List<bool> DueDates {get; set;}
+        public List<bool> CompanyAge { get; set; }
+        public List<bool> GrantType { get; set; }
+        public List<bool> Location { get; set; }
+        public List<bool> Race { get; set; }
+        public string ReligiousAffiliation { get; set; }
+        public List<bool> ReligiousIdentification { get; set; }
+        public List<bool> DueDates { get; set; }
         public String endURL;
 
         //list array that stores the values selected by user
@@ -36,14 +44,15 @@ namespace ChandlerSpeaks.Models
         private List<string> AllRaces = new List<string>();
 
 
-        public List<string> getAllLocations(){
+        public List<string> getAllLocations()
+        {
             return AllLocations;
         }
 
-        public List<string> getAllRaces(){
+        public List<string> getAllRaces()
+        {
             return AllRaces;
         }
-
 
         // Create other functions here.
         public string getCompanyAgeName(int Index)
@@ -84,7 +93,7 @@ namespace ChandlerSpeaks.Models
 
         public void DisplayAllValues()
         {
-           
+
 
             // Check if there are values in the CompanyAge list.
             if (CompanyAge != null)
@@ -147,7 +156,7 @@ namespace ChandlerSpeaks.Models
             // Check if there are values in the Religious Affiliation list.
             if (ReligiousAffiliation != null)
             {
-                Debug.WriteLine("User has religious affiliation? " + ReligiousAffiliation.ToUpper ());
+                Debug.WriteLine("User has religious affiliation? " + ReligiousAffiliation.ToUpper());
             }
 
             // Check if there are values in the Religious Identification list.
@@ -177,8 +186,8 @@ namespace ChandlerSpeaks.Models
                     Debug.WriteLine("[" + i + "] - " + DueDates[i]);
                 }
             }
-
-        } 
+        }
+    
 
         public void createURLend(){
             String LocationURL=null;
@@ -188,7 +197,7 @@ namespace ChandlerSpeaks.Models
             // Check if there are values in the Location list.
             if (Location != null && Location.Contains(true))
             {                
-                 LocationURL="in+";              //add in once
+                LocationURL="in+";              //add in once
 
                 // Iterate through the list and collect location search terms for URL
                 for (int i = 0; i < Location.Count; i++)
@@ -201,7 +210,7 @@ namespace ChandlerSpeaks.Models
                 }
             }
 
-             // Check if there are values in the Race list.
+            // Check if there are values in the Race list.
             if (Race != null)
             {
 
@@ -216,7 +225,7 @@ namespace ChandlerSpeaks.Models
                 }
             }
 
-             // Check if there are values in the Religious Identification list.
+            // Check if there are values in the Religious Identification list.
             if (ReligiousIdentification != null)
             {
                 // Iterate through the list and collect search terms for URL
@@ -232,6 +241,143 @@ namespace ChandlerSpeaks.Models
             endURL = ReligionURL+ RaceURL+ LocationURL;
             Debug.WriteLine(endURL);
 
+        }
+    
+    
+    //DESCRIPTION: This section is for querying against RSSFeeds. If the grant/source/xml being examined contains any of the 
+    //resulting strings that are a result of what the user selects in the filter setion on the left of the page
+        public void getListOfSelections(){
+            // Check if there are values in the CompanyAge list.
+            if (CompanyAge != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Company Age Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < CompanyAge.Count; i++)
+                {
+                    if(CompanyAge[i]==true)
+                    {
+                        companyAgeSelections.Add(CompanyAgeNames[i]);
+                    }
+                }
+            }
+
+            // Check if there are values in the GrantType list.
+            if (GrantType != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Grant Type Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < GrantType.Count; i++)
+                {
+                    if (GrantType[i] == true)
+                    {
+                        grantTypeSelections.Add(GrantTypeNames[i]);
+                    }
+                }
+            }
+
+            // Check if there are values in the Location list.
+            if (Location != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Location Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < Location.Count; i++)
+                {
+                    if (Location[i] == true)
+                    {
+                        locationSelections.Add(LocationNames[i]);
+                    }
+                }
+            }
+
+            // Check if there are values in the Race list.
+            if (Race != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Race Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < Race.Count; i++)
+                {
+                    if (Race[i] == true)
+                    {
+                        raceSelections.Add(RaceNames[i]);
+                    }
+                    if (RaceNames[i] == "Hispanic")
+                    {
+                        raceSelections.Add("hispanic");
+                        raceSelections.Add("latin");
+                        raceSelections.Add("Latin");
+                        raceSelections.Add("mexican");
+                        raceSelections.Add("central");
+                        raceSelections.Add("Central America");
+                        raceSelections.Add("South America");
+                    }
+                    if (RaceNames[i] == "African-American")
+                    {
+                        raceSelections.Add("African");
+                        raceSelections.Add("african");
+                        raceSelections.Add("Black");
+                        raceSelections.Add("black");
+                    }
+                    if (RaceNames[i] == "Asian")
+                    {
+                        raceSelections.Add("Asian");
+                        raceSelections.Add("Chinese");
+                        raceSelections.Add("Japan");
+                        raceSelections.Add("Japanese");
+                        raceSelections.Add("Korean");
+                        raceSelections.Add("korean");
+                        raceSelections.Add("Taiwan");
+                        raceSelections.Add("taiwan");
+                        raceSelections.Add("Vietnam");
+                        raceSelections.Add("vietnam");
+                    }
+                }
+            }
+
+            // Check if there are values in the Religious Identification list.
+            if (ReligiousIdentification != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Religious Identification Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < ReligiousIdentification.Count; i++)
+                {
+                    if (ReligiousIdentification[i] == true)
+                    {
+                        religiousSelections.Add(ReligiousIdentificationNames[i]);
+                    }
+                }
+            }
+
+            // Check if there are values in the Religious Identification list.
+            if (DueDates != null)
+            {
+                // Display to the user which filter section is
+                // being looked at.
+                Debug.WriteLine("Due Dates Section:");
+
+                // Iterate through the list and display each boolean.
+                for (int i = 0; i < DueDates.Count; i++)
+                {
+                    if (DueDates[i] == true)
+                    {
+                        dueDateSelections.Add(DueDatesNames[i]);
+                    }
+                }
+            }
         }
     }
 }

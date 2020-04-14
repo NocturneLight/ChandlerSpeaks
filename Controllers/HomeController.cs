@@ -27,7 +27,15 @@ namespace ChandlerSpeaks.Controllers
             //model.DisplayAllValues();
 
             model.createURLend();
-	        GoogleScrap(model);
+            
+            
+            
+            Console.WriteLine("Calling google scraper");
+
+            Console.WriteLine("Getting grants from grants.gov");
+            ViewData["Grants"] = returnGrantsGovRSSGrants(model); // Jesses Code to store grants in dictionary
+
+            GoogleScrap(model);
 
             //Test Scrapers seperately 
             //HTMLDoc_RssFinder("https://www.studentdebtrelief.us/scholarships/scholarships-grants-african-american-students/");
@@ -86,14 +94,11 @@ namespace ChandlerSpeaks.Controllers
         }
 
         
-	    public List<Grant> GoogleScrap(FilterModel model){
+	    public void GoogleScrap(FilterModel model){
         
             var starturl="http://www.google.com/search?q=\"grants\"+for+"+model.endURL+"&num=100";
             var webGet = new HtmlWeb();
-            //Jesse'sCode///////////////////////////////////////
-            List<Grant> grantsList = new List<Grant>(GrantsGovRSSGet.GetGrantGovList());
 
-            //End Jesse's Code//////////////////////////////////
             if (webGet.Load(starturl) is HtmlDocument document)
                 {   
                         //var nodes = document.DocumentNode.CssSelect("#item-search-results li").ToList();  
@@ -104,10 +109,8 @@ namespace ChandlerSpeaks.Controllers
                         foreach (var node in nodes)
                         {
                             //Console.WriteLine("URL: " + node.CssSelect("h2 a").Single().GetAttributeValue("href"));
-
                             String s = node.CssSelect(".rc .r a").Single().GetAttributeValue("href");
 
-                            
                             //Console.WriteLine("----"); 
                             //Console.WriteLine("URL: " + node.CssSelect(".rc .r a").Single().GetAttributeValue("href"));
                             
@@ -119,10 +122,7 @@ namespace ChandlerSpeaks.Controllers
                             
                         }
                 }
-            foreach(Grant grant in grantsList) {
-                Console.WriteLine(grant.Title);
-            }
-            return grantsList;
+
         }
 
         //search collected links for RSS
@@ -219,7 +219,41 @@ namespace ChandlerSpeaks.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+    
             return View();
+        }
+
+        //Pulls Grants from Grants.Gov, gets the filter selections the user made, grabs the relevant info and queries
+        //those terms against the grant results list, granting a score to the grants in the grants list and displaying them back
+        //in sorted order
+        public List<Grant> returnGrantsGovRSSGrants(FilterModel model)
+        {
+            List<Grant> grantsList = new List<Grant>(GrantsGovRSSGet.GetGrantGovList());
+            if (model.raceSelections != null) //If there are race selectors
+            {
+                foreach (Grant grant in grantsList) // for each grant in the grant list
+                {
+                    foreach (string selection in model.raceSelections) // for each selection in the race selections
+                    {
+                        if (grant.Content.Contains(selection)) // if the grant contains those keywords
+                        {
+                            grant.Score++; //increase the score of the grant
+                        }
+                    }
+                    foreach (string selection in model.religiousSelections) { // for each selection in the religious preferences selection
+                        if (grant.Content.Contains(selection)) // if the grant contains those keywords 
+                        {
+                            grant.Score++; // increase the score of the grant
+                        }
+                    }
+                }
+            }
+            //Call function that sorts the grantsList
+            GrantsGovRSSGet.SortListByMatches(grantsList);
+            foreach(Grant grant in grantsList) {
+                Console.WriteLine("Grant Title: " + grant.Title + " Grant Score: " + grant.Score);
+            }
+            return grantsList;
         }
 
         public IActionResult Privacy()

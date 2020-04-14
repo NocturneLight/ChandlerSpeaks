@@ -1,4 +1,6 @@
-public class Grant
+using System;
+using System.Collections;
+public class Grant: IComparable<Grant>
 {
     public Grant(string title, string link, string pubDate, string content)
     {
@@ -16,6 +18,20 @@ public class Grant
     public string PubDate { get; set; }
     public string Content { get; set; }
     public int Score { get; set; }
+    
+
+
+    public int CompareTo(Grant other)
+    {
+        if(this.Score > other.Score)
+            return -1;
+        else if (this.Score < other.Score)
+            return 1;
+        else
+            return 0;
+    }
 }
+
+
 
 //string description, string eligibilityInfo
