@@ -35,7 +35,7 @@ namespace ChandlerSpeaks.Controllers
             Console.WriteLine("Getting grants from grants.gov");
             ViewData["Grants"] = returnGrantsGovRSSGrants(model); // Jesses Code to store grants in dictionary
 
-            GoogleScrap(model);
+            //GoogleScrap(model);
 
             //Test Scrapers seperately 
             //HTMLDoc_RssFinder("https://www.studentdebtrelief.us/scholarships/scholarships-grants-african-american-students/");

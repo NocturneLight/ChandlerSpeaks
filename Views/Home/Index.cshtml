@@ -4,7 +4,16 @@
 @{
     ViewData["Title"] = "Home Page";
     
-
+    if (ViewData["Grants"] != null)
+    {
+        <h1>Now traversing the list from the cshtml file.</h1>
+        foreach (var item in (List<Grant>)ViewData["Grants"])
+        {
+            //Console.WriteLine(item.Title);
+            <p>@item.Title</p>
+        }
+        <h1>We have now finished the traversal.</h1>
+    }
     
 }
 

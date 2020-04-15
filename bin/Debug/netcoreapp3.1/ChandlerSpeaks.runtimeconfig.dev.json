@@ -1,8 +1,8 @@
 {
   "runtimeOptions": {
     "additionalProbingPaths": [
-      "C:\\Users\\IBM ThinkPad\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\IBM ThinkPad\\.nuget\\packages"
+      "C:\\Users\\Requi\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\Requi\\.nuget\\packages"
     ]
   }
 }
