@@ -99,8 +99,6 @@ namespace ChandlerSpeaks.Models
 
         public void DisplayAllValues()
         {
-
-
             // Check if there are values in the CompanyAge list.
             if (CompanyAge != null)
             {
@@ -253,11 +251,10 @@ namespace ChandlerSpeaks.Models
                 }
             }
 
-        } 
-    }
-    
+        }
 
-        public void createURLend(){
+        public void createURLend()
+        {
             String LocationURL=null;
             String RaceURL=null;
             String ReligionURL=null;
@@ -309,11 +306,11 @@ namespace ChandlerSpeaks.Models
             endURL = ReligionURL+ RaceURL+ LocationURL;
             Debug.WriteLine(endURL);
         }
-    
-    
-    //DESCRIPTION: This section is for querying against RSSFeeds. If the grant/source/xml being examined contains any of the 
-    //resulting strings that are a result of what the user selects in the filter setion on the left of the page
-        public void getListOfSelections(){
+
+        //DESCRIPTION: This section is for querying against RSSFeeds. If the grant/source/xml being examined contains any of the 
+        //resulting strings that are a result of what the user selects in the filter setion on the left of the page
+        public void getListOfSelections()
+        {
             // Check if there are values in the CompanyAge list.
             if (CompanyAge != null)
             {
@@ -327,121 +324,121 @@ namespace ChandlerSpeaks.Models
                     if(CompanyAge[i]==true)
                     {
                         companyAgeSelections.Add(CompanyAgeNames[i]);
+                    } 
+                }
+
+                // Check if there are values in the GrantType list.
+                if (GrantType != null)
+                {
+                    // Display to the user which filter section is
+                    // being looked at.
+                    Debug.WriteLine("Grant Type Section:");
+
+                    // Iterate through the list and display each boolean.
+                    for (int i = 0; i < GrantType.Count; i++)
+                    {
+                        if (GrantType[i] == true)
+                        {
+                            grantTypeSelections.Add(GrantTypeNames[i]);
+                        }
                     }
                 }
-            }
 
-            // Check if there are values in the GrantType list.
-            if (GrantType != null)
-            {
-                // Display to the user which filter section is
-                // being looked at.
-                Debug.WriteLine("Grant Type Section:");
-
-                // Iterate through the list and display each boolean.
-                for (int i = 0; i < GrantType.Count; i++)
+                // Check if there are values in the Location list.
+                if (Location != null)
                 {
-                    if (GrantType[i] == true)
+                    // Display to the user which filter section is
+                    // being looked at.
+                    Debug.WriteLine("Location Section:");
+
+                    // Iterate through the list and display each boolean.
+                    for (int i = 0; i < Location.Count; i++)
                     {
-                        grantTypeSelections.Add(GrantTypeNames[i]);
+                        if (Location[i] == true)
+                        {
+                            locationSelections.Add(LocationNames[i]);
+                        }
                     }
                 }
-            }
 
-            // Check if there are values in the Location list.
-            if (Location != null)
-            {
-                // Display to the user which filter section is
-                // being looked at.
-                Debug.WriteLine("Location Section:");
-
-                // Iterate through the list and display each boolean.
-                for (int i = 0; i < Location.Count; i++)
+                // Check if there are values in the Race list.
+                if (Race != null)
                 {
-                    if (Location[i] == true)
+                    // Display to the user which filter section is
+                    // being looked at.
+                    Debug.WriteLine("Race Section:");
+
+                    // Iterate through the list and display each boolean.
+                    for (int i = 0; i < Race.Count; i++)
                     {
-                        locationSelections.Add(LocationNames[i]);
+                        if (Race[i] == true)
+                        {
+                            raceSelections.Add(RaceNames[i]);
+                        }
+                        if (RaceNames[i] == "Hispanic")
+                        {
+                            raceSelections.Add("hispanic");
+                            raceSelections.Add("latin");
+                            raceSelections.Add("Latin");
+                            raceSelections.Add("mexican");
+                            raceSelections.Add("central");
+                            raceSelections.Add("Central America");
+                            raceSelections.Add("South America");
+                        }
+                        if (RaceNames[i] == "African-American")
+                        {
+                            raceSelections.Add("African");
+                            raceSelections.Add("african");
+                            raceSelections.Add("Black");
+                            raceSelections.Add("black");
+                        }
+                        if (RaceNames[i] == "Asian")
+                        {
+                            raceSelections.Add("Asian");
+                            raceSelections.Add("Chinese");
+                            raceSelections.Add("Japan");
+                            raceSelections.Add("Japanese");
+                            raceSelections.Add("Korean");
+                            raceSelections.Add("korean");
+                            raceSelections.Add("Taiwan");
+                            raceSelections.Add("taiwan");
+                            raceSelections.Add("Vietnam");
+                            raceSelections.Add("vietnam");
+                        }
                     }
                 }
-            }
 
-            // Check if there are values in the Race list.
-            if (Race != null)
-            {
-                // Display to the user which filter section is
-                // being looked at.
-                Debug.WriteLine("Race Section:");
-
-                // Iterate through the list and display each boolean.
-                for (int i = 0; i < Race.Count; i++)
+                // Check if there are values in the Religious Identification list.
+                if (ReligiousIdentification != null)
                 {
-                    if (Race[i] == true)
+                    // Display to the user which filter section is
+                    // being looked at.
+                    Debug.WriteLine("Religious Identification Section:");
+
+                    // Iterate through the list and display each boolean.
+                    for (int i = 0; i < ReligiousIdentification.Count; i++)
                     {
-                        raceSelections.Add(RaceNames[i]);
-                    }
-                    if (RaceNames[i] == "Hispanic")
-                    {
-                        raceSelections.Add("hispanic");
-                        raceSelections.Add("latin");
-                        raceSelections.Add("Latin");
-                        raceSelections.Add("mexican");
-                        raceSelections.Add("central");
-                        raceSelections.Add("Central America");
-                        raceSelections.Add("South America");
-                    }
-                    if (RaceNames[i] == "African-American")
-                    {
-                        raceSelections.Add("African");
-                        raceSelections.Add("african");
-                        raceSelections.Add("Black");
-                        raceSelections.Add("black");
-                    }
-                    if (RaceNames[i] == "Asian")
-                    {
-                        raceSelections.Add("Asian");
-                        raceSelections.Add("Chinese");
-                        raceSelections.Add("Japan");
-                        raceSelections.Add("Japanese");
-                        raceSelections.Add("Korean");
-                        raceSelections.Add("korean");
-                        raceSelections.Add("Taiwan");
-                        raceSelections.Add("taiwan");
-                        raceSelections.Add("Vietnam");
-                        raceSelections.Add("vietnam");
+                        if (ReligiousIdentification[i] == true)
+                        {
+                            religiousSelections.Add(ReligiousIdentificationNames[i]);
+                        }
                     }
                 }
-            }
 
-            // Check if there are values in the Religious Identification list.
-            if (ReligiousIdentification != null)
-            {
-                // Display to the user which filter section is
-                // being looked at.
-                Debug.WriteLine("Religious Identification Section:");
-
-                // Iterate through the list and display each boolean.
-                for (int i = 0; i < ReligiousIdentification.Count; i++)
+                // Check if there are values in the Religious Identification list.
+                if (DueDates != null)
                 {
-                    if (ReligiousIdentification[i] == true)
-                    {
-                        religiousSelections.Add(ReligiousIdentificationNames[i]);
-                    }
-                }
-            }
+                    // Display to the user which filter section is
+                    // being looked at.
+                    Debug.WriteLine("Due Dates Section:");
 
-            // Check if there are values in the Religious Identification list.
-            if (DueDates != null)
-            {
-                // Display to the user which filter section is
-                // being looked at.
-                Debug.WriteLine("Due Dates Section:");
-
-                // Iterate through the list and display each boolean.
-                for (int i = 0; i < DueDates.Count; i++)
-                {
-                    if (DueDates[i] == true)
+                    // Iterate through the list and display each boolean.
+                    for (int i = 0; i < DueDates.Count; i++)
                     {
-                        dueDateSelections.Add(DueDatesNames[i]);
+                        if (DueDates[i] == true)
+                        {
+                            dueDateSelections.Add(DueDatesNames[i]);
+                        }
                     }
                 }
             }

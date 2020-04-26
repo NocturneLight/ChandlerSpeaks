@@ -8,7 +8,7 @@ public class Grant: IComparable<Grant>
         Link = link;
         PubDate = pubDate;
         Content = content;
-        int Score = 0;
+        //int Score = 0;
         //Description = description;
         //EligibilityInfo = eligibilityInfo;
     }
@@ -24,11 +24,17 @@ public class Grant: IComparable<Grant>
     public int CompareTo(Grant other)
     {
         if(this.Score > other.Score)
+        {
             return -1;
+        }
         else if (this.Score < other.Score)
+        {
             return 1;
+        }
         else
+        {
             return 0;
+        }
     }
 }
 

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "dssMwNrcyp4nZEx+26I01JOZ1i9JXlDqdZ/VjlZX2fv8HOgO8+QWUmddN/zRf9yO8MLdAFr42p5MMmy2zrph6A==",
+  "dgSpecHash": "XxXt52x8KOEmEH6ggNrjaraSY5D7LYHx032ba1Vwq3BaI6moki4xNEqxbbxDQo/O2PUlga6tWh6WMSrmntTwgA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Requi\\Documents\\ChandlerSpeaks\\ChandlerSpeaks.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Requi\\.nuget\\packages\\buildbundlerminifier\\3.2.447\\buildbundlerminifier.3.2.447.nupkg.sha512",
     "C:\\Users\\Requi\\.nuget\\packages\\dynamiclanguageruntime\\1.2.2\\dynamiclanguageruntime.1.2.2.nupkg.sha512",
     "C:\\Users\\Requi\\.nuget\\packages\\fsharp.core\\4.5.2\\fsharp.core.4.5.2.nupkg.sha512",
     "C:\\Users\\Requi\\.nuget\\packages\\htmlagilitypack\\1.7.4\\htmlagilitypack.1.7.4.nupkg.sha512",
