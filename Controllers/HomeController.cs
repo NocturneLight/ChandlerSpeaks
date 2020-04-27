@@ -14,21 +14,22 @@ namespace ChandlerSpeaks.Controllers
     public class HomeController : Controller
     {   
         private readonly ILogger<HomeController> _logger;
-
+    
         // Create functions here.
         [HttpPost]
         public IActionResult Index(FilterModel model)
         {
+            GrantScraper generator = new GrantScraper(model);
+
             //model.DisplayAllValues();
 
-            model.createURLend();
+            //model.createURLend();
             
-            
-            
-            Debug.WriteLine("Calling google scraper");
 
-            Debug.WriteLine("Getting grants from grants.gov");
-            ViewData["Grants"] = returnGrantsGovRSSGrants(model); // Jesses Code to store grants in dictionary
+            //Debug.WriteLine("Getting grants from grants.gov");
+
+            //ViewData["Grants"] = generator.returnGrantsGovRSSGrants(model); // Jesse's Code to store grants in dictionary
+            //ViewData["Grants"] = generator.GetGrantGovList(model);
 
             //GoogleScrap(model);
 
@@ -36,7 +37,7 @@ namespace ChandlerSpeaks.Controllers
             //HTMLDoc_RssFinder("https://www.studentdebtrelief.us/scholarships/scholarships-grants-african-american-students/");
             //HTMLDoc_SourceSearcher("https://www.studentdebtrelief.us/scholarships/scholarships-grants-african-american-students/", model);
 
-            model.DisplayAllValues();
+            //model.DisplayAllValues();
 
 
             //return Content("Hi! The size is: ");
@@ -168,46 +169,6 @@ namespace ChandlerSpeaks.Controllers
              }
         }
 
-        //Pulls Grants from Grants.Gov, gets the filter selections the user made, grabs the relevant info and queries
-        //those terms against the grant results list, granting a score to the grants in the grants list and displaying them back
-        //in sorted order
-        public List<Grant> returnGrantsGovRSSGrants(FilterModel model)
-        {
-            List<Grant> grantsList = new List<Grant>(GrantsGovRSSGet.GetGrantGovList());
-
-            if (model.raceSelections != null) //If there are race selectors
-            {
-                foreach (Grant grant in grantsList) // for each grant in the grant list
-                {
-                    foreach (string selection in model.raceSelections) // for each selection in the race selections
-                    {
-                        if (grant.Content.Contains(selection)) // if the grant contains those keywords
-                        {
-                            grant.Score++; //increase the score of the grant
-                        }
-                    }
-
-                    foreach (string selection in model.religiousSelections) 
-                    { 
-                        // for each selection in the religious preferences selection
-                        if (grant.Content.Contains(selection)) // if the grant contains those keywords 
-                        {
-                            grant.Score++; // increase the score of the grant
-                        }
-                    }
-                }
-            }
-
-            //Call function that sorts the grantsList
-            GrantsGovRSSGet.SortListByMatches(grantsList);
-
-            foreach (Grant grant in grantsList) 
-            {
-                Debug.WriteLine("Grant Title: " + grant.Title + " Grant Score: " + grant.Score);
-            }
-
-            return grantsList;
-        }
 
         // Prebuilt functions.
         public HomeController(ILogger<HomeController> logger)

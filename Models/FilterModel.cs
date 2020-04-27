@@ -9,7 +9,141 @@ namespace ChandlerSpeaks.Models
     // they made on Index.cshtml.
     public class FilterModel
     {
-        // Create variables here.
+        // Create enums here.
+        public enum CompanyAgeNames
+        {
+            Less_Than_One,
+            One_To_Three,
+            Four_To_Six,
+            Seven_To_Nine,
+            Ten_To_Twelve,
+            More_Than_Twelve
+        }
+
+        public enum GrantTypeNames
+        {
+           All, 
+           Arts, 
+           Business, 
+           Community, 
+           Education, 
+           Environment, 
+           Health, 
+           Law, 
+           Technology
+        }
+
+        public enum LocationNames
+        {
+            All,
+            Carrollton,
+            Coppell,
+            Dallas,
+            Fort_Worth,
+            Flower_Mound,
+            Grapevine,
+            Irving,
+            Lewisville,
+            Plano,
+            Richardson,
+            Frisco,
+            Arlington,
+            Southlake
+        }
+
+        public enum RaceNames
+        {
+            African_American,
+            Asian,
+            Caucasian,
+            Hispanic,
+            Middle_Eastern,
+            American_Indian
+        }
+
+        public enum ReligiousAffiliationNames
+        {
+            Yes,
+            No
+        }
+
+        public enum ReligiousIdentificationNames
+        {
+            Christian,
+            Catholic,
+            Hindu,
+            Muslim,
+            Buddhist,
+            Sikh,
+            Jewish,
+            Other
+        }
+
+        public enum GrantDueDateNames
+        {
+            All,
+            January,
+            February,
+            March,
+            April,
+            May,
+            June,
+            July,
+            August,
+            September,
+            October,
+            November,
+            December
+        }
+
+        public enum GrantAmountNames
+        {
+            All,
+            Less_Than_Thousand,
+            Thousand_To_TenThousand,
+            TenThousandOne_To_TwentyFiveThousand,
+            TwentyFiveThousandOne_To_FiftyThousand,
+            Greater_Than_FiftyThousand
+        }
+
+        public enum Type501c3DesignationNames
+        {
+            Yes,
+            No
+        }
+
+        public enum FinancialInformationRequiredNames
+        {
+            Yes,
+            No
+        }
+
+        public enum RevenueRangeRequiredNames
+        {
+            Yes,
+            No
+        }
+
+        public enum FundingDueDateNames
+        {
+            All,
+            January,
+            February,
+            March,
+            April,
+            May,
+            June,
+            July,
+            August,
+            September,
+            October,
+            November,
+            December
+        }
+
+
+        /*
+        // TODO Adjust/Remove these.
         private readonly string[] CompanyAgeNames = { "Less than 1", "1 to 3", "4 to 6", "7 to 9", "10 to 12", "More than 12" };
         private readonly string[] GrantTypeNames = { "All", "Type 1", "Type 2", "Type 3", "Type 4", "Type 5" };
         private readonly string[] LocationNames = { "All", "Carrollton", "Coppell", "Dallas", "Fort Worth", "Flower Mound", "Grapevine", "Irving", "Lewisville", "Plano", "Richardson", "Frisco", "Arlington", "Southlake" };
@@ -17,13 +151,16 @@ namespace ChandlerSpeaks.Models
         private readonly string[] ReligiousAffiliationNames = { "Yes", "No" };
         private readonly string[] ReligiousIdentificationNames = { "Christian", "Catholic", "Hindu", "Muslim", "Buddhist", "Sikh", "Jewish", "Other" };
         private readonly string[] DueDatesNames = { "All", "1 Week", "2 Weeks", "1 Month", "2 Months", "Greater Than 2 Months" };
+        */
 
+        /*
         public List<string> companyAgeSelections = new List<string>();
         public List<string> grantTypeSelections = new List<string>();
         public List<string> locationSelections = new List<string>();
         public List<string> raceSelections = new List<string>();
         public List<string> religiousSelections = new List<string>();
         public List<string> dueDateSelections = new List<string>();
+        */
 
 
         // Create lists for storing each section's choice's truth values.
@@ -45,9 +182,12 @@ namespace ChandlerSpeaks.Models
         public List<bool> FundingDueDate {get; set;}
         public String endURL;
 
+
+        /*
         //list array that stores the values selected by user
         private List<string> AllLocations = new List<string>();
         private List<string> AllRaces = new List<string>();
+        
 
 
         public List<string> getAllLocations()
@@ -95,6 +235,7 @@ namespace ChandlerSpeaks.Models
         {
             return DueDatesNames[Index];
         }
+        */
 
 
         public void DisplayAllValues()
@@ -250,14 +391,14 @@ namespace ChandlerSpeaks.Models
                     Debug.WriteLine("[" + i + "] - " + FundingDueDate[i]);
                 }
             }
-
         }
-
+        /*
         public void createURLend()
         {
-            String LocationURL=null;
-            String RaceURL=null;
-            String ReligionURL=null;
+            // Create variables here.
+            String LocationURL = null;
+            String RaceURL = null;
+            String ReligionURL = null;
 
             // Check if there are values in the Location list.
             if (Location != null && Location.Contains(true))
@@ -306,7 +447,9 @@ namespace ChandlerSpeaks.Models
             endURL = ReligionURL+ RaceURL+ LocationURL;
             Debug.WriteLine(endURL);
         }
+        */
 
+        /*
         //DESCRIPTION: This section is for querying against RSSFeeds. If the grant/source/xml being examined contains any of the 
         //resulting strings that are a result of what the user selects in the filter setion on the left of the page
         public void getListOfSelections()
@@ -443,5 +586,6 @@ namespace ChandlerSpeaks.Models
                 }
             }
         }
+        */
     }
 }

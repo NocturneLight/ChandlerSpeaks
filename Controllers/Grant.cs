@@ -1,6 +1,6 @@
 using System;
 using System.Collections;
-public class Grant: IComparable<Grant>
+public class Grant : IComparable<Grant>
 {
     public Grant(string title, string link, string pubDate, string content)
     {
@@ -23,7 +23,7 @@ public class Grant: IComparable<Grant>
 
     public int CompareTo(Grant other)
     {
-        if(this.Score > other.Score)
+        if (this.Score > other.Score)
         {
             return -1;
         }
