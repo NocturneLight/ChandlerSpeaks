@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System.Linq;
 using ChandlerSpeaks.Models;
 
 // TODO Get working!
@@ -36,8 +37,6 @@ class GrantScraper
         
         // Sort the grants based on the website filters.
         grantsList.AddRange(GetOnlyRelevantGrants());
-        
-
 
         
         
@@ -69,59 +68,139 @@ class GrantScraper
         // Create local functions here.
         List<Grant> GetOnlyRelevantGrants()
         {
-            // TODO Do Company Age.
+            // Create variables here. All synonyms gotten from https://www.lexico.com/en/definition/
+            List<string> companyAgeSearchList = model.GetCompanyAgeFilterSearchList();
+            List<string> grantTypeSearchList = model.GetGrantTypeFilterSearchList();
+            List<string> locationSearchList = model.GetLocationFilterSearchList();
+            List<string> raceSearchList = model.GetRaceFilterSearchList();
+            List<string> religiousAffiliationSearchList = model.GetReligiousAffiliationFilterSearchList();
+            List<string> grantDueDateSearchList = model.GetGrantDueDateFilterSearchList();
+            List<string> grantAmountSearchList = model.GetGrantAmountFilterSearchList();
+            List<string> type501c3SearchList = model.GetType501c3FilterSearchList();
+            List<string> financialInfoRequiredSearchList = model.GetFinancialInfoRequiredFilterSearchList();
+            List<string> revenueRangeRequiredSearchList = model.GetRevenueRangeRequiredFilterSearchList();
+            List<string> fundingDueDateSearchList = model.GetFundingDueDateFilterSearchList();
 
-            //FilterModel.GrantTypeNames v = FilterModel.GrantTypeNames.All;
-            //int v = (int)FilterModel.GrantTypeNames.Technology
 
-            // TODO Create a filter list based on the user's choices. We will
-            // then increase a grant's score based on the number of occurances 
-            // of the words in the filter list.
+            // TODO Give each grant a score based on the number of occurences
+            // of the keywords. If the size is of a list is 0, 
 
-            for (int i = 0; i < model.GrantType.Count; i++)
+            // Traverse the list of grants.
+            foreach (var grant in grants)
             {
-                if (model.GrantType[i])
+                // Create local variables here.
+                int casList = 0;
+                int gtsList = 0;
+                int lsList = 0;
+                int rsList = 0;
+                int rasList = 0;
+                int gddsList = 0;
+                int gasList = 0;
+                int tcsList = 0;
+                int firsList = 0;
+                int rrrsList = 0;
+                int fddsList = 0;
+
+                // NOTE: The idea is we increase the corresponding score variable if there's a match. 
+                // If any of the scores are 0, and the search list wasn't 0, omit the grant. This should 
+                // help weed out useless variables.
+                if (companyAgeSearchList.Count > 0)
                 {
-                    if (model.GrantType[(int)FilterModel.GrantTypeNames.All])
+                    foreach (var item in companyAgeSearchList)
                     {
-                        // Do a thing.
-                        break;
+                        casList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
                     }
-                    else if (model.GrantType[(int)FilterModel.GrantTypeNames.Arts])
-                    {
-                        
-                    }
-                    else if (model.GrantType[(int)FilterModel.GrantTypeNames.Business])
-                    {
-                        
-                    }
-                    else if (model.GrantType[(int)FilterModel.GrantTypeNames.Community])
-                    {
-                        
-                    }
-                    else if (model.GrantType[(int)FilterModel.GrantTypeNames.Education])
-                    {
-                        
-                    }
-                    else if (model.GrantType[(int)FilterModel.GrantTypeNames.Environment])
-                    {
-                        
-                    }
-                    else if (model.GrantType[(int)FilterModel.GrantTypeNames.Health])
-                    {
-                        
-                    }
-                    else if (model.GrantType[(int)FilterModel.GrantTypeNames.Law])
-                    {
-                        
-                    }
-                    else if (model.GrantType[(int)FilterModel.GrantTypeNames.Technology])
-                    {
-                        
-                    }
-                    
                 }
+
+                if (grantTypeSearchList.Count > 0)
+                {
+                    foreach (var item in grantTypeSearchList)
+                    {   
+                        gtsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (locationSearchList.Count > 0)
+                {
+                    foreach (var item in locationSearchList)
+                    {
+                        lsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (raceSearchList.Count > 0)
+                {
+                    foreach (var item in raceSearchList)
+                    {
+                        rsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (religiousAffiliationSearchList.Count > 0)
+                {
+                    foreach (var item in religiousAffiliationSearchList)
+                    {
+                        rasList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (grantDueDateSearchList.Count > 0)
+                {
+                    foreach (var item in grantDueDateSearchList)
+                    {
+                        gddsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (grantAmountSearchList.Count > 0)
+                {
+                    foreach (var item in grantAmountSearchList)
+                    {
+                        gasList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (type501c3SearchList.Count > 0)
+                {
+                    foreach (var item in type501c3SearchList)
+                    {
+                        tcsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (financialInfoRequiredSearchList.Count > 0)
+                {
+                    foreach (var item in financialInfoRequiredSearchList)
+                    {
+                        firsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (revenueRangeRequiredSearchList.Count > 0)
+                {
+                    foreach (var item in revenueRangeRequiredSearchList)
+                    {
+                        rrrsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                if (fundingDueDateSearchList.Count > 0)
+                {
+                    foreach (var item in fundingDueDateSearchList)
+                    {
+                        fddsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
+                    }
+                }
+
+                // TODO Implement the portion of the score system where we add a grant if all valid score integers
+                // are not 0 and the corresponding filter list was also not 0. 
+                // IN OTHER WORDS, if any of the filter lists were not 0, and the corresponding score integer still came up 0, 
+                // omit the grant.
+
+                //Debug.WriteLine(grant.Title + " | " + casList + ", " + gtsList + ", " + lsList + ", " + rsList + ", " + rasList + ", " + gddsList + ", " + gasList + ", " + tcsList + ", " + firsList + ", " + rrrsList + ", " + fddsList);
             }
+
+
 
             return new List<Grant>();
         }
@@ -135,7 +214,7 @@ class GrantScraper
             // Add values to a grant list.
             for (int i = 0; i < rawContentNodes.Count; i++)
             {
-                _.Add(new Grant(titleNodes.Item(i + 1).InnerText, linkNodes.Item(i + 1).InnerText, pubDateNodes.Item(i).InnerText, contentNodes[i]));
+                _.Add(new Grant(titleNodes.Item(i + 1).InnerText, linkNodes.Item(i + 1).InnerText, pubDateNodes.Item(i).InnerText, contentNodes[i], rawContentNodes.Item(i).InnerText));
             }
 
             // Return the newly formed list of grants.
@@ -186,7 +265,7 @@ class GrantScraper
         }
     }
 
-    
+    /*
     // Pulls Grants from Grants.Gov, gets the filter selections the user made, grabs the relevant info and queries
     // those terms against the grant results list, granting a score to the grants in the grants list and displaying them back
     // in sorted order.
@@ -195,7 +274,7 @@ class GrantScraper
         // Create variables here.
         //List<Grant> grantsList = new List<Grant>(GetGrantGovList(model));
 
-            /*
+            
             if (model.raceSelections != null) //If there are race selectors
             {
                 foreach (Grant grant in grantsList) // for each grant in the grant list
@@ -218,12 +297,12 @@ class GrantScraper
                     }
                 }
             }
-            */
+            
 
         // Function that sorts the grantsList.
         //GrantScraper.SortListByMatches(grantsList);
 
-        /*
+        
         // Debug statements to display the sorted list.
         Debug.WriteLine("\nNow sorting the grant list:\n");
 
@@ -233,12 +312,13 @@ class GrantScraper
         }
 
         Debug.WriteLine("\nFinished sorting.\n");
-        */
+        
 
         // We return the sorted list now.
         //return grantsList;
         return new List<Grant>();
     }
+    */
 
     // EXPLAINER: This method, SortListByMatches, takes the grantsList that results from GrantsGovRSSGet and increments a score 
     // based on how many keywords related to child speech development that the content section of the grant matches against. It 
