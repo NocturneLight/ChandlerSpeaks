@@ -1,5 +1,6 @@
 using System;
-using System.Collections;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 public class Grant : IComparable<Grant>
 {
     // Getters and setters go here.
@@ -8,24 +9,26 @@ public class Grant : IComparable<Grant>
     public string PubDate { get; set; }
     public string Content { get; set; }
     public string RawText { get; set; }
+    public string GrantAmount { get; set; }
+    public string GrantDueDate { get; set; }
     public int Score { get; set; }
 
 
     // Our constructor goes here.
-    public Grant(string title, string link, string pubDate, string content, string rawText)
+    public Grant(string title, string link, string pubDate, string content, string rawText, string grantAmount, string grantDueDate)
     {
         Title = title;
         Link = link;
         PubDate = pubDate;
         Content = content;
         RawText = rawText;
-        //int Score = 0;
-        //Description = description;
-        //EligibilityInfo = eligibilityInfo;
+        GrantAmount = grantAmount;
+        GrantDueDate = grantDueDate;
     }
     
 
-    // Our functions go here.
+    // CompareTo() is a function that is automatically called by the Sort() method
+    // because of the IComparable<Grant> extension given.
     public int CompareTo(Grant other)
     {
         if (this.Score > other.Score)
@@ -42,7 +45,3 @@ public class Grant : IComparable<Grant>
         }
     }
 }
-
-
-
-//string description, string eligibilityInfo

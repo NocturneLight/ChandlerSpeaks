@@ -199,11 +199,11 @@
                     <input type="checkbox" asp-for="GrantAmount[1]" value="true">
                     <label asp-for="GrantAmount[1]">Less Than 1000</label><br>
                     <input type="checkbox" asp-for="GrantAmount[2]" value="true">
-                    <label asp-for="GrantAmount[2]">1000 - 10000</label><br>
+                    <label asp-for="GrantAmount[2]">1000-10000</label><br>
                     <input type="checkbox" asp-for="GrantAmount[3]" value="true">
-                    <label asp-for="GrantAmount[3]">10001-25000</label><br>
+                    <label asp-for="GrantAmount[3]">10000-25000</label><br>
                     <input type="checkbox" asp-for="GrantAmount[4]" value="true">
-                    <label asp-for="GrantAmount[4]">25001-50000</label><br>
+                    <label asp-for="GrantAmount[4]">25000-50000</label><br>
                     <input type="checkbox" asp-for="GrantAmount[5]" value="true">
                     <label asp-for="GrantAmount[5]">Greater Than 50000</label><br>                    
                 </fieldset>
@@ -277,7 +277,14 @@
 
         <!--In the right column contains the list grants brought back from the webcrawler.-->
         <section class="col right-style">
-            Section 5
+            @if (ViewData["Grants"] != null)
+            {
+                // TODO Make the list of grants pretty!
+                @foreach (var item in (List<Grant>)ViewData["Grants"])
+                {
+                    <h5>@item.Title</h5>
+                }
+            }
         </section>
         
     </section>

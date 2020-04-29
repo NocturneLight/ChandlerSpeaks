@@ -19,32 +19,33 @@ namespace ChandlerSpeaks.Controllers
         [HttpPost]
         public IActionResult Index(FilterModel model)
         {
+            // Pull the grants from grants.gov, get the ones relevant to 
+            // the user's choices, and then sort them by score.
             GrantScraper generator = new GrantScraper(model);
 
-            //model.DisplayAllValues();
-
-            //model.createURLend();
+            // If the user pressed any buttons, send a list of grants relevant
+            // to the choices they made.
+            if (getFilterBoolStates())
+            {
+                // Send the grants to the webpage.
+                ViewData["Grants"] = generator.getGrants(model);
+            }
             
-
-            //Debug.WriteLine("Getting grants from grants.gov");
-
-            //ViewData["Grants"] = generator.returnGrantsGovRSSGrants(model); // Jesse's Code to store grants in dictionary
-            //ViewData["Grants"] = generator.GetGrantGovList(model);
-
-            //GoogleScrap(model);
-
-            //Test Scrapers seperately 
-            //HTMLDoc_RssFinder("https://www.studentdebtrelief.us/scholarships/scholarships-grants-african-american-students/");
-            //HTMLDoc_SourceSearcher("https://www.studentdebtrelief.us/scholarships/scholarships-grants-african-american-students/", model);
-
-            //model.DisplayAllValues();
-
-
-            //return Content("Hi! The size is: ");
+            // Return to the webpage.
             return View("Index");
+
+
+
+            // Create local functions here.
+            bool getFilterBoolStates()
+            {
+                return  model.companyAgeContains(true) || model.grantTypeContains(true) || model.locationContains(true) || 
+                        model.raceContains(true) || model.religiousAffiliationContains("yes") || model.religiousIdentificationContains(true) || 
+                        model.grantDueDateContains(true) || model.grantAmountContains(true) || model.type501c3Contains("yes") || 
+                        model.financialInfoRequiredContains("yes") || model.revenueRangeRequiredContains("yes") || model.fundingDueDateContains(true);
+            }
         }
 
-        
 	    public void GoogleScrap(FilterModel model)
         {
             var starturl="http://www.google.com/search?q=\"grants\"+for+"+model.endURL+"&num=100";

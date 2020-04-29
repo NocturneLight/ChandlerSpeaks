@@ -10,141 +10,18 @@ namespace ChandlerSpeaks.Models
     public class FilterModel
     {
         // Create enums here.
-        public enum CompanyAgeNames
-        {
-            Less_Than_One,
-            One_To_Three,
-            Four_To_Six,
-            Seven_To_Nine,
-            Ten_To_Twelve,
-            More_Than_Twelve
-        }
-
-        public enum GrantTypeNames
-        {
-           All, 
-           Arts, 
-           Business, 
-           Community, 
-           Education, 
-           Environment, 
-           Health, 
-           Law, 
-           Technology,
-           Sciences,
-           Special_Ed,
-           Research,
-           Training,
-           STEM
-        }
-
-        public enum LocationNames
-        {
-            All,
-            Carrollton,
-            Coppell,
-            Dallas,
-            Fort_Worth,
-            Flower_Mound,
-            Grapevine,
-            Irving,
-            Lewisville,
-            Plano,
-            Richardson,
-            Frisco,
-            Arlington,
-            Southlake
-        }
-
-        public enum RaceNames
-        {
-            African_American,
-            Asian,
-            Caucasian,
-            Hispanic,
-            Middle_Eastern,
-            American_Indian
-        }
-
-        public enum ReligiousAffiliationNames
-        {
-            Yes,
-            No
-        }
-
-        public enum ReligiousIdentificationNames
-        {
-            Christian,
-            Catholic,
-            Hindu,
-            Muslim,
-            Buddhist,
-            Sikh,
-            Jewish,
-            Other
-        }
-
-        public enum GrantDueDateNames
-        {
-            All,
-            January,
-            February,
-            March,
-            April,
-            May,
-            June,
-            July,
-            August,
-            September,
-            October,
-            November,
-            December
-        }
-
-        public enum GrantAmountNames
-        {
-            All,
-            Less_Than_Thousand,
-            Thousand_To_TenThousand,
-            TenThousandOne_To_TwentyFiveThousand,
-            TwentyFiveThousandOne_To_FiftyThousand,
-            Greater_Than_FiftyThousand
-        }
-
-        public enum Type501c3DesignationNames
-        {
-            Yes,
-            No
-        }
-
-        public enum FinancialInformationRequiredNames
-        {
-            Yes,
-            No
-        }
-
-        public enum RevenueRangeRequiredNames
-        {
-            Yes,
-            No
-        }
-
-        public enum FundingDueDateNames
-        {
-            All,
-            January,
-            February,
-            March,
-            April,
-            May,
-            June,
-            July,
-            August,
-            September,
-            October,
-            November,
-            December
-        }
+        public enum CompanyAgeNames { Less_Than_One, One_To_Three, Four_To_Six, Seven_To_Nine, Ten_To_Twelve, More_Than_Twelve }
+        public enum GrantTypeNames { All, Arts, Business, Community, Education, Environment, Health, Law, Technology, Sciences, Special_Ed, Research, Training, STEM }
+        public enum LocationNames { All, Carrollton, Coppell, Dallas, Fort_Worth, Flower_Mound, Grapevine, Irving, Lewisville, Plano, Richardson, Frisco, Arlington, Southlake }
+        public enum RaceNames { African_American, Asian, Caucasian, Hispanic, Middle_Eastern, American_Indian }
+        public enum ReligiousAffiliationNames { Yes, No }
+        public enum ReligiousIdentificationNames { Christian, Catholic, Hindu, Muslim, Buddhist, Sikh, Jewish, Other }
+        public enum GrantDueDateNames { All, January, February, March, April, May, June, July, August, September, October, November, December }
+        public enum GrantAmountNames { All, Less_Than_Thousand, Thousand_To_TenThousand, TenThousandOne_To_TwentyFiveThousand, TwentyFiveThousandOne_To_FiftyThousand, Greater_Than_FiftyThousand }
+        public enum Type501c3DesignationNames { Yes, No }
+        public enum FinancialInformationRequiredNames { Yes, No }
+        public enum RevenueRangeRequiredNames { Yes, No }
+        public enum FundingDueDateNames { All, January, February, March, April, May, June, July, August, September, October, November, December }
 
 
         /*
@@ -172,76 +49,82 @@ namespace ChandlerSpeaks.Models
         // Each checkbox on the main page gets one area of the list.
         // In other words, checkbox 1 of the Company Age section gets "CompanyAge[0],
         // checkbox 2 gets "CompanyAge[1]" and so on.
-        public List<bool> CompanyAge {get; set;}
-        public List<bool> GrantType {get; set;}
-        public List<bool> Location {get; set;}
-        public List<bool> Race {get; set;}
-        public string ReligiousAffiliation {get; set;}
-        public List<bool> ReligiousIdentification {get; set;}
-        public List<bool> GrantDueDate {get; set;}
-        public List<bool> GrantAmount {get; set;}
-        public string Type501c3 {get; set;}
-        public string FinancialInfoRequired {get; set;}
-        public string RevenueRangeRequired {get; set;}
-        public List<bool> FundingDueDate {get; set;}
+        public List<bool> CompanyAge { get; set; }
+        public List<bool> GrantType { get; set; }
+        public List<bool> Location { get; set; }
+        public List<bool> Race { get; set; }
+        public string ReligiousAffiliation { get; set; }
+        public List<bool> ReligiousIdentification { get; set; }
+        public List<bool> GrantDueDate { get; set; }
+        public List<bool> GrantAmount { get; set; }
+        public string Type501c3 { get; set; }
+        public string FinancialInfoRequired { get; set; }
+        public string RevenueRangeRequired { get; set; }
+        public List<bool> FundingDueDate { get; set; }
         public String endURL;
-
-
-        /*
-        //list array that stores the values selected by user
-        private List<string> AllLocations = new List<string>();
-        private List<string> AllRaces = new List<string>();
         
 
-
-        public List<string> getAllLocations()
-        {
-            return AllLocations;
-        }
-
-        public List<string> getAllRaces()
-        {
-            return AllRaces;
-        }
-
-        // Create other functions here.
-        public string getCompanyAgeName(int Index)
-        {
-            return CompanyAgeNames[Index];
-        }
-
-        public string getGrantTypeNames(int Index)
-        {
-            return GrantTypeNames[Index];
-        }
-
-        public string getLocationNames(int Index)
-        {
-            return LocationNames[Index];
-        }
-
-        public string getRaceNames(int Index)
-        {
-            return RaceNames[Index];
-        }
-
-        public string getReligiousAffiliationNames(int Index)
-        {
-            return ReligiousAffiliationNames[Index];
-        }
-
-        public string getReligiousIdentificationNames(int Index)
-        {
-            return ReligiousIdentificationNames[Index];
-        }
-
-        public string getDueDatesNames(int Index)
-        {
-            return DueDatesNames[Index];
-        }
-        */
-
         // Create functions here.
+        public bool companyAgeContains(bool truthVal)
+        {
+            return CompanyAge.Contains(truthVal);
+        }
+
+        public bool grantTypeContains(bool truthVal)
+        {
+            return GrantType.Contains(truthVal);
+        }
+
+        public bool locationContains(bool truthVal)
+        {
+            return Location.Contains(truthVal);
+        }
+
+        public bool raceContains(bool truthVal)
+        {
+            return Race.Contains(truthVal);
+        }
+
+        public bool religiousAffiliationContains(string yesVal)
+        {
+            return ReligiousAffiliation != null && ReligiousAffiliation.Contains(yesVal);
+        }
+
+        public bool religiousIdentificationContains(bool truthVal)
+        {
+            return ReligiousIdentification.Contains(truthVal);
+        }
+
+        public bool grantDueDateContains(bool truthVal)
+        {
+            return GrantDueDate.Contains(truthVal);
+        }
+
+        public bool grantAmountContains(bool truthVal)
+        {
+            return GrantAmount.Contains(truthVal);
+        }
+
+        public bool type501c3Contains(string yesVal)
+        {
+            return Type501c3 != null && Type501c3.Contains(yesVal);
+        }
+
+        public bool financialInfoRequiredContains(string yesVal)
+        {
+            return FinancialInfoRequired != null && FinancialInfoRequired.Contains(yesVal);
+        }
+
+        public bool revenueRangeRequiredContains(string yesVal)
+        {
+            return RevenueRangeRequired != null && RevenueRangeRequired.Contains(yesVal);
+        }
+
+        public bool fundingDueDateContains(bool truthVal)
+        {
+            return FundingDueDate.Contains(truthVal);
+        }
+
         public List<string> GetCompanyAgeFilterSearchList()
         {
             // TODO Figure out what to do with company age.
@@ -421,7 +304,7 @@ namespace ChandlerSpeaks.Models
             if (Type501c3 != null && Type501c3.Equals(Type501c3DesignationNames.Yes.ToString().ToLower()))
             {
                 filterSearchList.Add("501c3");
-                filterSearchList.Add("501(c)(3)");
+                filterSearchList.Add(@"501\(c\)\(3\)");
             }
 
             // Return our newly formed search list.
@@ -432,9 +315,8 @@ namespace ChandlerSpeaks.Models
         {
             // Create variables here.
             List<string> filterSearchList = new List<string>();
-            List<string> GrantAmountList = new List<string> {
-                "less than 1000", "<1000", "1000-10000", "1000 to 10000", "10001-25000",
-                "10001 to 25000", "25001-50000", "25001 to 50000", ">50000", "greater than 50000"
+            List<string> GrantAmountList = new List<string> { 
+                "0 1000", "1000 10000", "10000 25000", "25000 50000", "50000"
             };
 
             // The grant amount filter check.
@@ -442,32 +324,27 @@ namespace ChandlerSpeaks.Models
             {
                 if (GrantAmount[(int)GrantAmountNames.Less_Than_Thousand])
                 {
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("less than 1000")]);
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("<1000")]);
+                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("0 1000")]);
                 }
 
                 if (GrantAmount[(int)GrantAmountNames.Thousand_To_TenThousand])
                 {
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("1000-10000")]);
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("1000 to 10000")]);
+                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("1000 10000")]);
                 }
 
                 if (GrantAmount[(int)GrantAmountNames.TenThousandOne_To_TwentyFiveThousand])
                 {
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("10001-25000")]);
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("10001 to 25000")]);
+                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("10000 25000")]);
                 }
 
                 if (GrantAmount[(int)GrantAmountNames.TwentyFiveThousandOne_To_FiftyThousand])
                 {
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("25001-50000")]);
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("25001 to 50000")]);
+                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("25000 50000")]);
                 }
 
                 if (GrantAmount[(int)GrantAmountNames.Greater_Than_FiftyThousand])
                 {
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf(">50000")]);
-                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("greater than 50000")]);
+                    filterSearchList.Add(GrantAmountList[GrantAmountList.IndexOf("50000")]);
                 }
             }
             else
@@ -484,8 +361,8 @@ namespace ChandlerSpeaks.Models
             // Create variables here.
             List<string> filterSearchList = new List<string>();
             List<string> GrantDueDateList = new List<string> {
-                "january", "february", "march", "april", "may", "june", "july", "august", "september",
-                "october", "november", "december"
+                "january", "jan", "february", "feb", "march", "mar", "april", "apr", "may", "june", "jun", "july", "jul", "august", "aug", "september",
+                "sept", "sep", "october", "oct", "november", "nov", "december", "dec"
             };
 
             // TODO Figure out what to do with grant due date. The grant due date filter check.
@@ -494,21 +371,25 @@ namespace ChandlerSpeaks.Models
                 if (GrantDueDate[(int)GrantDueDateNames.January])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("january")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("jan")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.February])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("february")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("feb")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.March])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("march")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("mar")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.April])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("april")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("apr")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.May])
@@ -519,36 +400,44 @@ namespace ChandlerSpeaks.Models
                 if (GrantDueDate[(int)GrantDueDateNames.June])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("june")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("jun")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.July])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("july")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("jul")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.August])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("august")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("aug")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.September])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("september")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("sept")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("sep")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.October])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("october")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("oct")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.November])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("november")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("nov")]);
                 }
 
                 if (GrantDueDate[(int)GrantDueDateNames.December])
                 {
                     filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("december")]);
+                    filterSearchList.Add(GrantDueDateList[GrantDueDateList.IndexOf("dec")]);
                 }
             }
             else
