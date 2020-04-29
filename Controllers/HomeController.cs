@@ -40,7 +40,7 @@ namespace ChandlerSpeaks.Controllers
             bool getFilterBoolStates()
             {
                 return  model.companyAgeContains(true) || model.grantTypeContains(true) || model.locationContains(true) || 
-                        model.raceContains(true) || model.religiousAffiliationContains("yes") || model.religiousIdentificationContains(true) || 
+                        model.raceContains(true) || (model.religiousAffiliationContains("yes") && model.religiousIdentificationContains(true)) || 
                         model.grantDueDateContains(true) || model.grantAmountContains(true) || model.type501c3Contains("yes") || 
                         model.financialInfoRequiredContains("yes") || model.revenueRangeRequiredContains("yes") || model.fundingDueDateContains(true);
             }
