@@ -2,6 +2,38 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+function EnableReligiousIdentification(checkbox) 
+{
+    // Get all the religious identification variables we'll be disabling.
+    const checkboxArray = [
+        document.getElementById("ReligiousIdentification_0_"),
+        document.getElementById("ReligiousIdentification_1_"),
+        document.getElementById("ReligiousIdentification_2_"),
+        document.getElementById("ReligiousIdentification_3_"),
+        document.getElementById("ReligiousIdentification_4_"),
+        document.getElementById("ReligiousIdentification_5_"),
+        document.getElementById("ReligiousIdentification_6_"),
+        document.getElementById("ReligiousIdentification_7_")
+    ];
+
+    if (checkbox.value == "yes") 
+    {
+        // Iterate through the array and set all the buttons
+        // to enabled.
+        checkboxArray.forEach(element => {
+            element.disabled = false;
+        });
+    } 
+    else if (checkbox.value == "no") 
+    {
+        // Iterate through the array and set all the buttons
+        // to disabled.
+        checkboxArray.forEach(element => {
+            element.disabled = true;
+        });
+    }
+}
+
 function DisplayEducationFilters() 
 {
     // Store the education checkbox in a variable.

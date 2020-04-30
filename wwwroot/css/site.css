@@ -7,6 +7,27 @@ the container classes.*/
 
 /* Custom styles implemented here.
 ------------------------------------------------------*/
+.grant-background {
+  padding: 1em;
+}
+
+.grant-description-style {
+  margin-left: 1em;
+}
+
+.grant-price-style {
+  margin-left: 1em;
+  text-align: left;
+  float: left;
+  font-weight: bold;
+}
+
+.grant-duedate-style {
+  margin-left: 1em;
+  text-align: right;
+  font-weight: bold;
+}
+
 .fieldset-style {
   height: 110px;
   border: solid;
@@ -16,6 +37,7 @@ the container classes.*/
   margin: 0.5em 2.5em 0.5em 2.5em;
   overflow-x: hidden;
   overflow-y: scroll;
+  border-color: #91720a36;
 }
 
 .legend-style {

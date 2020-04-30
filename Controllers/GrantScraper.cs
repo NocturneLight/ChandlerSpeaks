@@ -6,7 +6,9 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using ChandlerSpeaks.Models;
 
-// TODO Get working!
+// This GrantScraper class pulls and parses grants from the RSS feed on grants.gov only. When getGrants() 
+// is called, if the user's choices on the filters matches a grant in the list, we leave it. In all other
+// instances, we remove the grant from the list. Whatever remains, we sort and send to the webpage to display.
 class GrantScraper
 {
     // Create variables here.
@@ -14,22 +16,9 @@ class GrantScraper
     private XmlReader xmlDocument = XmlReader.Create(grantGovRSSFeed);
     private List<Grant> grants = new List<Grant>();
 
-    //EXPLAINER: This constructor, GrantScraper, pulls and parses grants from RSS feed on grants.gov only 
-    //if they are qualified for 501c3 nonprofits and have a category of health or education
-    //public List<Grant> GetGrantGovList(FilterModel model)
+
     public GrantScraper(FilterModel model)
     {
-        //-----------------JESSE ALOTTOS CODE HERE---------------------------------------------------------------------------
-        //Plan: 1. Get a bunch of URls
-        //  2. Place the URLs into a grant object
-        //  3. Query keywords against the grants that match firstly keywords like health and children and childcare and speech development so on
-        //  secondly query against the grants that match the demographic information laid out in the selections from the filterModel
-        //  4. Sort the grants by their scores from max to min and display them in that order to the user on the website
-        // CURRENT PROGRESS: Get it done in grants.gov, then get a bunch of other rss feeds. Create a separate process to parse each of them
-
-        // Grants.gov -------------------///////////////
-
-
         // Create variables here.
         List<string> grantTitles = new List<string>();
         List<string> grantLinks = new List<string>();
@@ -192,7 +181,7 @@ class GrantScraper
                 bool removeGrant = false;
 
                 // NOTE: The idea is we increase the corresponding score variable if there's a match. 
-                // If any of the scores are 0, and the search list wasn't 0, omit the grant. This should 
+                // If any of the scores are 0, and the search list length wasn't 0, omit the grant. This should 
                 // help weed out irrelevant grants.
                 if (companyAgeSearchList.Count > 0)
                 {
@@ -348,100 +337,5 @@ class GrantScraper
                 }
             }
         }
-    }
-
-    /*
-    // Pulls Grants from Grants.Gov, gets the filter selections the user made, grabs the relevant info and queries
-    // those terms against the grant results list, granting a score to the grants in the grants list and displaying them back
-    // in sorted order.
-    public List<Grant> returnGrantsGovRSSGrants(FilterModel model)
-    {
-        // Create variables here.
-        //List<Grant> grantsList = new List<Grant>(GetGrantGovList(model));
-
-            
-            if (model.raceSelections != null) //If there are race selectors
-            {
-                foreach (Grant grant in grantsList) // for each grant in the grant list
-                {
-                    foreach (string selection in model.raceSelections) // for each selection in the race selections
-                    {
-                        if (grant.Content.Contains(selection)) // if the grant contains those keywords
-                        {
-                            grant.Score++; //increase the score of the grant
-                        }
-                    }
-
-                    foreach (string selection in model.religiousSelections) 
-                    { 
-                        // for each selection in the religious preferences selection
-                        if (grant.Content.Contains(selection)) // if the grant contains those keywords 
-                        {
-                            grant.Score++; // increase the score of the grant
-                        }
-                    }
-                }
-            }
-            
-
-        // Function that sorts the grantsList.
-        //GrantScraper.SortListByMatches(grantsList);
-
-        
-        // Debug statements to display the sorted list.
-        Debug.WriteLine("\nNow sorting the grant list:\n");
-
-        foreach (Grant grant in grantsList) 
-        {
-            Debug.WriteLine("Grant Title: " + grant.Title + " Grant Score: " + grant.Score);
-        }
-
-        Debug.WriteLine("\nFinished sorting.\n");
-        
-
-        // We return the sorted list now.
-        //return grantsList;
-        return new List<Grant>();
-    }
-    */
-
-    // EXPLAINER: This method, SortListByMatches, takes the grantsList that results from GrantsGovRSSGet and increments a score 
-    // based on how many keywords related to child speech development that the content section of the grant matches against. It 
-    // then returns the list sorted with the highest scoring entries first. This can then be loaded into the results area
-    // after further incrementing the score counter based on demographic, location, etc, information to get the highest scoring matches first.
-    public static List<Grant> SortListByMatches(List<Grant> grantsList) 
-    {
-        // Create variables here.
-        string[] keywordBankForChildSpeechRelatedGrants = { "child", "speech", "learning", "disab", "patho", "impedi", "education", "therapy", "talk", "kid", "audi" };
-        
-        // Calculates the score.
-        foreach (Grant grant in grantsList)
-        {
-            foreach (string keyword in keywordBankForChildSpeechRelatedGrants)
-            {
-                if (grant.Content.Contains(keyword))
-                {
-                    grant.Score++;
-                }
-            }
-        }
-
-        /*
-        // Debug lines to the console to see all grants and their associated score
-        Debug.WriteLine("\nNow displaying the unsorted list of grants.\n");
-
-        foreach (Grant grant in grantsList)
-        {
-            Console.WriteLine(grant.Title + " | " + grant.Score);
-        }
-
-        Debug.WriteLine("\nDisplaying of the unsorted grants has ended.\n");
-        */
-        
-        // Sorts the list based on score.
-        grantsList.Sort();
-
-        // Returns the sorted list.
-        return grantsList;
     }
 }

@@ -3,20 +3,6 @@
 
 @{
     ViewData["Title"] = "Home Page";
-    
-    /*
-    if (ViewData["Grants"] != null)
-    {
-        <h1>Now traversing the list from the cshtml file.</h1>
-        foreach (var item in (List<Grant>)ViewData["Grants"])
-        {
-            //Console.WriteLine(item.Title);
-            <p>@item.PubDate</p>
-        }
-        <h1>We have now finished the traversal.</h1>
-    }
-    */
-    
 }
 
 <body>
@@ -29,17 +15,17 @@
                 <!--The Company Age section.-->
                 <fieldset class="col fieldset-style">
                     <legend class="legend-style">Company Age</legend>
-                    <input type="checkbox" asp-for="CompanyAge[0]" value="true">
+                    <input type="checkbox" asp-for="CompanyAge[0]" value="true" disabled>
                     <label asp-for="CompanyAge[0]">Less than 1</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[1]" value="true">
+                    <input type="checkbox" asp-for="CompanyAge[1]" value="true" disabled>
                     <label asp-for="CompanyAge[1]">1 to 3</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[2]" value="true">
+                    <input type="checkbox" asp-for="CompanyAge[2]" value="true" disabled>
                     <label asp-for="CompanyAge[2]">4 to 6</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[3]" value="true">
+                    <input type="checkbox" asp-for="CompanyAge[3]" value="true" disabled>
                     <label asp-for="CompanyAge[3]">7 to 9</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[4]" value="true">
+                    <input type="checkbox" asp-for="CompanyAge[4]" value="true" disabled>
                     <label asp-for="CompanyAge[4]">10 to 12</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[5]" value="true">
+                    <input type="checkbox" asp-for="CompanyAge[5]" value="true" disabled>
                     <label asp-for="CompanyAge[5]">More than 12</label><br>
                 </fieldset>
                 <!--The Grant Type section.-->
@@ -133,29 +119,29 @@
                 <!--The Religious Affiliation section.-->
                 <fieldset class="col fieldset-style">
                     <legend class="legend-style">Religious Affiliation</legend>
-                    <input type="radio" asp-for="ReligiousAffiliation" value="yes">
+                    <input type="radio" asp-for="ReligiousAffiliation" value="yes" onclick="EnableReligiousIdentification(this)">
                     <label asp-for="ReligiousAffiliation">Yes</label><br>
-                    <input type="radio" asp-for="ReligiousAffiliation" value="no">
+                    <input type="radio" asp-for="ReligiousAffiliation" value="no" onclick="EnableReligiousIdentification(this)">
                     <label asp-for="ReligiousAffiliation">No</label><br>                    
                 </fieldset>
                 <!--The Religious Identification section.-->
                 <fieldset class="col fieldset-style">
                     <legend class="legend-style">Religious Identification</legend>
-                    <input type="checkbox" asp-for="ReligiousIdentification[0]" value="true">
+                    <input type="checkbox" asp-for="ReligiousIdentification[0]" value="true" disabled>
                     <label asp-for="ReligiousIdentification[0]">Christian</label><br>
-                    <input type="checkbox" asp-for="ReligiousIdentification[1]" value="true">
+                    <input type="checkbox" asp-for="ReligiousIdentification[1]" value="true" disabled>
                     <label asp-for="ReligiousIdentification[1]">Catholic</label><br>
-                    <input type="checkbox" asp-for="ReligiousIdentification[2]" value="true">
+                    <input type="checkbox" asp-for="ReligiousIdentification[2]" value="true" disabled>
                     <label asp-for="ReligiousIdentification[2]">Hindu</label><br>
-                    <input type="checkbox" asp-for="ReligiousIdentification[3]" value="true">
+                    <input type="checkbox" asp-for="ReligiousIdentification[3]" value="true" disabled>
                     <label asp-for="ReligiousIdentification[3]">Muslim</label><br>
-                    <input type="checkbox" asp-for="ReligiousIdentification[4]" value="true">
+                    <input type="checkbox" asp-for="ReligiousIdentification[4]" value="true" disabled>
                     <label asp-for="ReligiousIdentification[4]">Buddhist</label><br>
-                    <input type="checkbox" asp-for="ReligiousIdentification[5]" value="true">
+                    <input type="checkbox" asp-for="ReligiousIdentification[5]" value="true" disabled>
                     <label asp-for="ReligiousIdentification[5]">Sikh</label><br>
-                    <input type="checkbox" asp-for="ReligiousIdentification[6]" value="true">
+                    <input type="checkbox" asp-for="ReligiousIdentification[6]" value="true" disabled>
                     <label asp-for="ReligiousIdentification[6]">Jewish</label><br>
-                    <input type="checkbox" asp-for="ReligiousIdentification[7]" value="true">
+                    <input type="checkbox" asp-for="ReligiousIdentification[7]" value="true" disabled>
                     <label asp-for="ReligiousIdentification[7]">Other</label><br>
                 </fieldset>
             </section>
@@ -221,9 +207,9 @@
                 <!--The Financial Information Required section.-->
                 <fieldset class="col fieldset-style">
                     <legend class="legend-style">Financial Information Required?</legend>
-                    <input type="radio" asp-for="FinancialInfoRequired" value="yes">
+                    <input type="radio" asp-for="FinancialInfoRequired" value="yes" disabled>
                     <label asp-for="FinancialInfoRequired">Yes</label><br>
-                    <input type="radio" asp-for="FinancialInfoRequired" value="no">
+                    <input type="radio" asp-for="FinancialInfoRequired" value="no" disabled>
                     <label asp-for="FinancialInfoRequired">No</label><br>
                 </fieldset>
             </section>
@@ -232,39 +218,39 @@
                 <!--The Revenue Range Required section.-->
                 <fieldset class="col fieldset-style">
                     <legend class="legend-style">Revenue Range Required?</legend>
-                    <input type="radio" asp-for="RevenueRangeRequired" value="yes">
+                    <input type="radio" asp-for="RevenueRangeRequired" value="yes" disabled>
                     <label asp-for="RevenueRangeRequired">Yes</label><br>
-                    <input type="radio" asp-for="RevenueRangeRequired" value="no">
+                    <input type="radio" asp-for="RevenueRangeRequired" value="no" disabled>
                     <label asp-for="RevenueRangeRequired">No</label><br>
                 </fieldset>
                 <!--The Funding Due Date section.-->
                 <fieldset class="col fieldset-style">
                     <legend class="legend-style"> Funding Due Date</legend>
-                    <input type="checkbox" asp-for="FundingDueDate[0]" value="true">
+                    <input type="checkbox" asp-for="FundingDueDate[0]" value="true" disabled>
                     <label asp-for="FundingDueDate[0]">All</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[1]" value="true">
+                    <input type="checkbox" asp-for="FundingDueDate[1]" value="true" disabled>
                     <label asp-for="FundingDueDate[1]">January</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[2]" value="true">
+                    <input type="checkbox" asp-for="FundingDueDate[2]" value="true" disabled>
                     <label asp-for="FundingDueDate[2]">February</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[3]" value="true">
+                    <input type="checkbox" asp-for="FundingDueDate[3]" value="true" disabled>
                     <label asp-for="FundingDueDate[3]">March</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[4]" value="true">
+                    <input type="checkbox" asp-for="FundingDueDate[4]" value="true" disabled>
                     <label asp-for="FundingDueDate[4]">April</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[5]" value="true">
+                    <input type="checkbox" asp-for="FundingDueDate[5]" value="true" disabled>
                     <label asp-for="FundingDueDate[5]">May</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[6]" value="true">
+					<input type="checkbox" asp-for="FundingDueDate[6]" value="true" disabled>
                     <label asp-for="FundingDueDate[6]">June</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[7]" value="true">
+					<input type="checkbox" asp-for="FundingDueDate[7]" value="true" disabled>
                     <label asp-for="FundingDueDate[7]">July</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[8]" value="true">
+					<input type="checkbox" asp-for="FundingDueDate[8]" value="true" disabled>
                     <label asp-for="FundingDueDate[8]">August</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[9]" value="true">
+					<input type="checkbox" asp-for="FundingDueDate[9]" value="true" disabled>
                     <label asp-for="FundingDueDate[9]">September</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[10]" value="true">
+					<input type="checkbox" asp-for="FundingDueDate[10]" value="true" disabled>
                     <label asp-for="FundingDueDate[10]">October</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[11]" value="true">
+					<input type="checkbox" asp-for="FundingDueDate[11]" value="true" disabled>
                     <label asp-for="FundingDueDate[11]">November</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[12]" value="true">
+					<input type="checkbox" asp-for="FundingDueDate[12]" value="true" disabled>
                     <label asp-for="FundingDueDate[12]">December</label><br>                                        
                 </fieldset>
             </section>
@@ -279,22 +265,33 @@
         <section class="col right-style">
             @if (ViewData["Grants"] != null)
             {
-                // TODO Make the list of grants pretty!
-                @foreach (var item in (List<Grant>)ViewData["Grants"])
+                List<Grant> _ = (List<Grant>)ViewData["Grants"];        
+
+                // Iterate through the list of grants and display the relevant information.
+                foreach (var item in _)
                 {
-                    <h5>@item.Title</h5>
+                    <section class="grant-background">
+                        <a href="@item.Link" target="_blank">@item.Title</a>
+                        <br>
+                        <p class="grant-price-style">Grant Amount: @item.GrantAmount</p>
+                        <p class="grant-duedate-style">Due Date: @item.GrantDueDate</p>
+                        
+                        <p class="grant-description-style">@item.Content</p>
+                        <br>
+                    </section>
                 }
+
+                // Display the following message if no grants are found.
+                if (_.Count == 0)
+                {
+                    <p>No grants found.</p>
+                }
+            }
+            else
+            {
+                <p>Grants will appear here once you have made a selection and pressed the submit button!</p>
             }
         </section>
         
     </section>
 </body>
-
-
-
-<!--
-    <div class="text-center">
-        <h1 class="display-4">Welcome!</h1>
-        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    </div>
--->
