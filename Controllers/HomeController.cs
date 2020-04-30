@@ -1,84 +1,51 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ChandlerSpeaks.Models;
-using IronPython.Hosting;
+using System.Linq;
+using System;
+using HtmlAgilityPack;
+using ScrapySharp.Extensions;
 
 namespace ChandlerSpeaks.Controllers
 {
+    // Create variables here.
     public class HomeController : Controller
-    {
+    {   
         private readonly ILogger<HomeController> _logger;
-
-        // Create variables here.
-        //dynamic testVariable;
-
+    
         // Create functions here.
         [HttpPost]
         public IActionResult Index(FilterModel model)
         {
-            model.DisplayAllValues();
+            // Pull the grants from grants.gov, get the ones relevant to 
+            // the user's choices, and then sort them by score.
+            GrantScraperModel generator = new GrantScraperModel(model);
 
-
-
-
-            // Create an instance of the Python engine.
-            //var pythonEngine = Python.CreateEngine();
-
-
-            //string path = @"..\ChandlerSpeaks\Lib\site-packages";
-
-            //var paths = pythonEngine.GetSearchPaths();
-            //paths.Add(path);
-            //pythonEngine.SetSearchPaths(paths);
-
-
-
-
-
-            // Create an instance of the scope.
-            //var pythonScope = pythonEngine.CreateScope();
-
-            // Create an instance of an operation.
-            //var operation = pythonEngine.Operations;
-
-            // Compile and execute the Python program.
-            //var pythonScript = pythonEngine.CreateScriptSourceFromFile("HelloWorld.py").Compile().Execute(pythonScope);
-            //var pythonScript = pythonEngine.ExecuteFile("HelloWorld.py", pythonScope);
-
-            // Retrieve the Python program's list from the scope instance.
-            //IronPython.Runtime.List pythonList = pythonScope.GetVariable("testDiction");
-            
-            // Retrieve an instance of the object.
-            //object foobarTest = pythonScope.GetVariable("fooTest");
-
-            //Func<string> sayHello = pythonEngine.Operations.GetMember<Func<string>>(foobarTest, "f");
-            //Func<int> sayAge = pythonEngine.Operations.GetMember<Func<int>>(foobarTest, "getAge");
-            //Func<List<string>> Hi = pythonEngine.Operations.GetMember<Func<List<string>>>(foobarTest, "");
-
-            //string result = sayHello();
-            //int age = sayAge();
-
-            //Debug.WriteLine(result);
-            //Debug.WriteLine(age);    
-
-            /*
-            foreach (var item in model.CompanyAge)
+            // If the user pressed any buttons, send a list of grants relevant
+            // to the choices they made.
+            if (getFilterBoolStates())
             {
-                Debug.WriteLine(item);
+                // Send the grants to the webpage.
+                ViewData["Grants"] = generator.getGrants(model);
             }
-            */
+            
+            // Return to the webpage.
+            return View(model);
 
-            //return Content("Hi! The size is: ");
-            return View("Index");
+
+
+            // Create local functions here.
+            bool getFilterBoolStates()
+            {
+                return  model.companyAgeContains(true) || model.grantTypeContains(true) || model.locationContains(true) || 
+                        model.raceContains(true) || (model.religiousAffiliationContains("yes") && model.religiousIdentificationContains(true)) || 
+                        model.grantDueDateContains(true) || model.grantAmountContains(true) || model.type501c3Contains("yes") || 
+                        model.financialInfoRequiredContains("yes") || model.revenueRangeRequiredContains("yes") || model.fundingDueDateContains(true);
+            }
         }
 
-        
 
         // Prebuilt functions.
         public HomeController(ILogger<HomeController> logger)
@@ -89,6 +56,7 @@ namespace ChandlerSpeaks.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+    
             return View();
         }
 
