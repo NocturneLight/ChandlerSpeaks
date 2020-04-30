@@ -9,15 +9,15 @@ using ChandlerSpeaks.Models;
 // This GrantScraper class pulls and parses grants from the RSS feed on grants.gov only. When getGrants() 
 // is called, if the user's choices on the filters matches a grant in the list, we leave it. In all other
 // instances, we remove the grant from the list. Whatever remains, we sort and send to the webpage to display.
-class GrantScraper
+class GrantScraperModel
 {
     // Create variables here.
     private const string grantGovRSSFeed = "https://www.grants.gov/rss/GG_NewOppByAgency.xml";
     private XmlReader xmlDocument = XmlReader.Create(grantGovRSSFeed);
-    private List<Grant> grants = new List<Grant>();
+    private List<GrantModel> grants = new List<GrantModel>();
 
 
-    public GrantScraper(FilterModel model)
+    public GrantScraperModel(FilterModel model)
     {
         // Create variables here.
         List<string> grantTitles = new List<string>();
@@ -57,16 +57,16 @@ class GrantScraper
 
         
         // Create local functions here.
-        List<Grant> GetAllGrants(List<string> titleNodes, List<string> linkNodes, List<string> pubDateNodes, List<string> rawContentNodes)
+        List<GrantModel> GetAllGrants(List<string> titleNodes, List<string> linkNodes, List<string> pubDateNodes, List<string> rawContentNodes)
         {
             // Create variables here.
-            List<Grant> _ = new List<Grant>();
+            List<GrantModel> _ = new List<GrantModel>();
             (List<string> descriptionNodes, List<string> grantAmountNodes, List<string> grantDueDateNodes) = ParseXMLEncodedContent(rawContentNodes);
 
             // Add values to a grant list.
             for (int i = 0; i < rawContentNodes.Count; i++)
             {
-                _.Add(new Grant(titleNodes[i + 1], linkNodes[i + 1], pubDateNodes[i], descriptionNodes[i], rawContent[i], grantAmountNodes[i], grantDueDateNodes[i]));
+                _.Add(new GrantModel(titleNodes[i + 1], linkNodes[i + 1], pubDateNodes[i], descriptionNodes[i], rawContent[i], grantAmountNodes[i], grantDueDateNodes[i]));
             }
 
             // Return the newly formed list of grants.
@@ -133,7 +133,7 @@ class GrantScraper
     }
 
     // Create functions here.
-    public List<Grant> getGrants(FilterModel model)
+    public List<GrantModel> getGrants(FilterModel model)
     {
         // Search for specific keywords and dwindle the list down if no matches for a user
         // chosen filter is found.
@@ -160,7 +160,7 @@ class GrantScraper
             List<string> financialInfoRequiredSearchList = model.GetFinancialInfoRequiredFilterSearchList();
             List<string> revenueRangeRequiredSearchList = model.GetRevenueRangeRequiredFilterSearchList();
             List<string> fundingDueDateSearchList = model.GetFundingDueDateFilterSearchList();
-            List<Grant> relevantGrantList = new List<Grant>();
+            List<GrantModel> relevantGrantList = new List<GrantModel>();
 
 
             // Traverse the list of grants.

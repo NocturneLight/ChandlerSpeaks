@@ -21,7 +21,7 @@ namespace ChandlerSpeaks.Controllers
         {
             // Pull the grants from grants.gov, get the ones relevant to 
             // the user's choices, and then sort them by score.
-            GrantScraper generator = new GrantScraper(model);
+            GrantScraperModel generator = new GrantScraperModel(model);
 
             // If the user pressed any buttons, send a list of grants relevant
             // to the choices they made.

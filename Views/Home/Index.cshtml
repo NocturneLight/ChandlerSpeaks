@@ -265,7 +265,7 @@
         <section class="col right-style">
             @if (ViewData["Grants"] != null)
             {
-                List<Grant> _ = (List<Grant>)ViewData["Grants"];        
+                List<GrantModel> _ = (List<GrantModel>)ViewData["Grants"];        
 
                 // Iterate through the list of grants and display the relevant information.
                 foreach (var item in _)
@@ -292,6 +292,5 @@
                 <p>Grants will appear here once you have made a selection and pressed the submit button!</p>
             }
         </section>
-        
     </section>
 </body>
