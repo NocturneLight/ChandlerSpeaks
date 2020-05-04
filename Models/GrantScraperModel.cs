@@ -76,9 +76,9 @@ class GrantScraperModel
         (List<string>, List<string>, List<string>) ParseXMLEncodedContent(List<string> contentNodes)
         {
             // Create variables here.
-            const string regexReplaceSequence = @"(<.+?>)|(]]>)";
+            const string regexReplaceSequence = @"(<.+?>)|(]]>)"; // Partially adapted from the regex located at: https://stackoverflow.com/questions/9967747/remove-html-from-string/9968899#9968899
             const string regexSplitSequence = @"~+";
-            const string regexAmountMatchSequence = @"^\$(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$";
+            const string regexAmountMatchSequence = @"^\$(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$"; // Obtained from: http://regexlib.com/REDetails.aspx?regexp_id=70
             const string regexDateMatchSequence = "[0-9]+";
             List<string> descriptionList = new List<string>();
             List<string> grantAmountList = new List<string>(); 

@@ -39,9 +39,7 @@ namespace ChandlerSpeaks.Models
         public string Type501c3 { get; set; }
         public string FinancialInfoRequired { get; set; }
         public string RevenueRangeRequired { get; set; }
-        public List<bool> FundingDueDate { get; set; }
-        public String endURL;
-        
+        public List<bool> FundingDueDate { get; set; }        
 
         // Create functions here.
         public bool companyAgeContains(bool truthVal)
