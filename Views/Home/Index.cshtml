@@ -12,22 +12,6 @@
         <form class="col left-style" method="POST">
             <!--This first row of filter sections.-->
             <section class="row">
-                <!--The Company Age section.-->
-                <fieldset class="col fieldset-style">
-                    <legend class="legend-style">Company Age</legend>
-                    <input type="checkbox" asp-for="CompanyAge[0]" value="true" disabled>
-                    <label asp-for="CompanyAge[0]">Less than 1</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[1]" value="true" disabled>
-                    <label asp-for="CompanyAge[1]">1 to 3</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[2]" value="true" disabled>
-                    <label asp-for="CompanyAge[2]">4 to 6</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[3]" value="true" disabled>
-                    <label asp-for="CompanyAge[3]">7 to 9</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[4]" value="true" disabled>
-                    <label asp-for="CompanyAge[4]">10 to 12</label><br>
-                    <input type="checkbox" asp-for="CompanyAge[5]" value="true" disabled>
-                    <label asp-for="CompanyAge[5]">More than 12</label><br>
-                </fieldset>
                 <!--The Grant Type section.-->
                 <fieldset class="col fieldset-style">
                     <legend class="legend-style">Grant Type</legend>
@@ -203,55 +187,6 @@
                     <label asp-for="Type501c3">Yes</label><br>
                     <input type="radio" asp-for="Type501c3" value="no">
                     <label asp-for="Type501c3">No</label><br>
-                </fieldset>
-                <!--The Financial Information Required section.-->
-                <fieldset class="col fieldset-style">
-                    <legend class="legend-style">Financial Information Required?</legend>
-                    <input type="radio" asp-for="FinancialInfoRequired" value="yes" disabled>
-                    <label asp-for="FinancialInfoRequired">Yes</label><br>
-                    <input type="radio" asp-for="FinancialInfoRequired" value="no" disabled>
-                    <label asp-for="FinancialInfoRequired">No</label><br>
-                </fieldset>
-            </section>
-            <!--The sixth row of filter sections.-->
-            <section class="row">
-                <!--The Revenue Range Required section.-->
-                <fieldset class="col fieldset-style">
-                    <legend class="legend-style">Revenue Range Required?</legend>
-                    <input type="radio" asp-for="RevenueRangeRequired" value="yes" disabled>
-                    <label asp-for="RevenueRangeRequired">Yes</label><br>
-                    <input type="radio" asp-for="RevenueRangeRequired" value="no" disabled>
-                    <label asp-for="RevenueRangeRequired">No</label><br>
-                </fieldset>
-                <!--The Funding Due Date section.-->
-                <fieldset class="col fieldset-style">
-                    <legend class="legend-style"> Funding Due Date</legend>
-                    <input type="checkbox" asp-for="FundingDueDate[0]" value="true" disabled>
-                    <label asp-for="FundingDueDate[0]">All</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[1]" value="true" disabled>
-                    <label asp-for="FundingDueDate[1]">January</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[2]" value="true" disabled>
-                    <label asp-for="FundingDueDate[2]">February</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[3]" value="true" disabled>
-                    <label asp-for="FundingDueDate[3]">March</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[4]" value="true" disabled>
-                    <label asp-for="FundingDueDate[4]">April</label><br>
-                    <input type="checkbox" asp-for="FundingDueDate[5]" value="true" disabled>
-                    <label asp-for="FundingDueDate[5]">May</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[6]" value="true" disabled>
-                    <label asp-for="FundingDueDate[6]">June</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[7]" value="true" disabled>
-                    <label asp-for="FundingDueDate[7]">July</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[8]" value="true" disabled>
-                    <label asp-for="FundingDueDate[8]">August</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[9]" value="true" disabled>
-                    <label asp-for="FundingDueDate[9]">September</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[10]" value="true" disabled>
-                    <label asp-for="FundingDueDate[10]">October</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[11]" value="true" disabled>
-                    <label asp-for="FundingDueDate[11]">November</label><br>
-					<input type="checkbox" asp-for="FundingDueDate[12]" value="true" disabled>
-                    <label asp-for="FundingDueDate[12]">December</label><br>                                        
                 </fieldset>
             </section>
 
