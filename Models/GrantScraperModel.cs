@@ -95,14 +95,13 @@ class GrantScraperModel
                 // Remove empty strings from the list.
                 splitContent.RemoveAll(removeCharacters);
 
-                // Display an error message if the description could not be found
-                // in the array. Otherwise, add the description to the description
-                // list.
+                // Display an error message if the description, estimated total program funding, and close date 
+                // could not be found in the array. Otherwise, add the description to the description list.
                 try
                 {
                     // Store the description, grant amount, and grant due date index for evaluation.
                     int descriptionIndex = splitContent.IndexOf("Description:");
-                    int grantAmountIndex = splitContent.IndexOf("Award Ceiling:");
+                    int grantAmountIndex = splitContent.IndexOf("Estimated Total Program Funding:");
                     int grantDueDateIndex = splitContent.IndexOf("Close Date:");
 
                     // Adjust the grant amount and due dates for the cases where we failed to find a number.
@@ -149,7 +148,6 @@ class GrantScraperModel
         void GetOnlyRelevantGrants()
         {
             // Create variables here. All synonyms gotten from https://www.lexico.com/en/definition/
-            List<string> companyAgeSearchList = model.GetCompanyAgeFilterSearchList();
             List<string> grantTypeSearchList = model.GetGrantTypeFilterSearchList();
             List<string> locationSearchList = model.GetLocationFilterSearchList();
             List<string> raceSearchList = model.GetRaceFilterSearchList();
@@ -157,10 +155,6 @@ class GrantScraperModel
             List<string> grantDueDateSearchList = model.GetGrantDueDateFilterSearchList();
             List<string> grantAmountSearchList = model.GetGrantAmountFilterSearchList();
             List<string> type501c3SearchList = model.GetType501c3FilterSearchList();
-            List<string> financialInfoRequiredSearchList = model.GetFinancialInfoRequiredFilterSearchList();
-            List<string> revenueRangeRequiredSearchList = model.GetRevenueRangeRequiredFilterSearchList();
-            List<string> fundingDueDateSearchList = model.GetFundingDueDateFilterSearchList();
-            List<GrantModel> relevantGrantList = new List<GrantModel>();
 
 
             // Traverse the list of grants.
@@ -178,29 +172,16 @@ class GrantScraperModel
                 int firsList = 0;
                 int rrrsList = 0;
                 int fddsList = 0;
-                bool removeGrant = false;
 
                 // NOTE: The idea is we increase the corresponding score variable if there's a match. 
-                // If any of the scores are 0, and the search list length wasn't 0, omit the grant. This should 
-                // help weed out irrelevant grants.
-                if (companyAgeSearchList.Count > 0)
-                {
-                    foreach (var item in companyAgeSearchList)
-                    {
-                        casList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
-                    }
-
-                    removeGrant = casList == 0 ? true : removeGrant;
-                }
-                // TODO Might need to adjust education subfilters? Make them essentially another set of filters?
+                // We remove a grant if the total score is still 0 in the end.
                 if (grantTypeSearchList.Count > 0)
                 {
+                    // TODO Might need to adjust education subfilters? Make them essentially another set of filters?
                     foreach (var item in grantTypeSearchList)
                     {   
                         gtsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
                     }
-
-                    removeGrant = gtsList == 0 ? true : removeGrant;
                 }
 
                 if (locationSearchList.Count > 0)
@@ -209,8 +190,6 @@ class GrantScraperModel
                     {
                         lsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
                     }
-
-                    removeGrant = lsList == 0 ? true : removeGrant;
                 }
 
                 if (raceSearchList.Count > 0)
@@ -219,8 +198,6 @@ class GrantScraperModel
                     {
                         rsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
                     }
-
-                    removeGrant = rsList == 0 ? true : removeGrant;
                 }
 
                 if (religiousAffiliationSearchList.Count > 0)
@@ -229,8 +206,6 @@ class GrantScraperModel
                     {
                         rasList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
                     }
-
-                    removeGrant = rasList == 0 ? true : removeGrant;
                 }
 
                 if (grantDueDateSearchList.Count > 0)
@@ -239,8 +214,6 @@ class GrantScraperModel
                     {
                         gddsList += Regex.Matches(grant.GrantDueDate, item, RegexOptions.IgnoreCase).Count;
                     }
-
-                    removeGrant = gddsList == 0 ? true : removeGrant;
                 }
 
                 if (grantAmountSearchList.Count > 0)
@@ -274,10 +247,7 @@ class GrantScraperModel
                                 gasList++;
                             }
                         }
-                        //gasList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
                     }
-
-                    removeGrant = gasList == 0 ? true : removeGrant;
                 }
 
                 if (type501c3SearchList.Count > 0)
@@ -286,54 +256,15 @@ class GrantScraperModel
                     {
                         tcsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
                     }
-
-                    removeGrant = tcsList == 0 ? true : removeGrant;
                 }
 
-                // NOTE: This doesn't really work with grants.gov.
-                if (financialInfoRequiredSearchList.Count > 0)
-                {
-                    foreach (var item in financialInfoRequiredSearchList)
-                    {
-                        firsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
-                    }
-
-                    removeGrant = firsList == 0 ? true : removeGrant;
-                }
-
-                // NOTE: This doesn't really work with grants.gov.
-                if (revenueRangeRequiredSearchList.Count > 0)
-                {
-                    foreach (var item in revenueRangeRequiredSearchList) // NOTE: Working as intended. There are no hits for "revenue range". 
-                    {
-                        rrrsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
-                    }
-
-                    removeGrant = rrrsList == 0 ? true : removeGrant;
-                }
-
-                // NOTE: This doesn't really work with grants.gov.
-                if (fundingDueDateSearchList.Count > 0)
-                {
-                    foreach (var item in fundingDueDateSearchList)
-                    {
-                        fddsList += Regex.Matches(grant.RawText, item, RegexOptions.IgnoreCase).Count;
-                    }
-
-                    removeGrant = fddsList == 0 ? true : removeGrant;
-                }
-
-                // If at any point, the filters in use fail to find a grant with matches,
-                // we remove the grant from the list due to irrelevency. Otherwise, add
-                // up the grant's score.
-                if (removeGrant)
+                // Add up the grant's score.
+                grant.Score = casList + gtsList + lsList + rsList + rasList + gddsList + gasList + tcsList + firsList + rrrsList + fddsList;
+                
+                // If the score is still 0 after the addition, then the grant is unrelated and we remove it.
+                if (grant.Score <= 0)
                 {
                     grants.Remove(grant);
-                }
-                else
-                {
-                    // Add up the grant's score for sorting later.
-                    grant.Score = casList + gtsList + lsList + rsList + rasList + gddsList + gasList + tcsList + firsList + rrrsList + fddsList;
                 }
             }
         }
